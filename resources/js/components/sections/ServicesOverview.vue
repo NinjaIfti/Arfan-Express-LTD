@@ -1,72 +1,124 @@
 <template>
-  <section ref="servicesRef" class="py-24 bg-gradient-to-br from-gray-50 via-blue-50 to-gray-100 relative overflow-hidden">
-    <!-- Premium Background Pattern -->
-    <div class="absolute inset-0 opacity-5">
-      <div class="absolute top-20 left-10 w-32 h-32 bg-blue-200 rounded-full premium-float"></div>
-      <div class="absolute bottom-20 right-10 w-48 h-48 bg-blue-100 rounded-full premium-float" style="animation-delay: 2s;"></div>
-      <div class="absolute top-1/2 left-1/2 w-24 h-24 bg-blue-300 rounded-full transform -translate-x-1/2 -translate-y-1/2 premium-float" style="animation-delay: 4s;"></div>
+  <section ref="servicesRef" class="relative py-24 overflow-hidden">
+    <!-- Logistics Background Image -->
+    <div class="absolute inset-0 logistics-background-image"></div>
+    
+    <!-- Professional Overlay -->
+    <div class="absolute inset-0 bg-gradient-to-br from-[#1a4a7a]/95 via-[#2a5a8a]/90 to-[#1a4a7a]/95"></div>
+    
+    <!-- Subtle Pattern Overlay -->
+    <div class="absolute inset-0 opacity-10">
+      <div class="absolute inset-0" style="background-image: radial-gradient(circle at 25% 25%, white 2px, transparent 2px), radial-gradient(circle at 75% 75%, white 2px, transparent 2px); background-size: 50px 50px;"></div>
     </div>
 
-    <div class="container mx-auto px-6 relative">
-      <!-- Premium Section Header -->
+    <div class="container mx-auto px-6 relative z-10">
+      <!-- Professional Section Header -->
       <div ref="headerRef" class="text-center mb-20">
-        <div ref="titleRef" class="mb-6">
-          <span class="text-sm font-semibold text-blue-600 uppercase tracking-wider mb-2 block">Our Expertise</span>
-          <h2 class="text-5xl md:text-6xl font-bold text-gray-900 mb-4 leading-tight">
-            Comprehensive <span class="text-blue-600">Logistics</span>
-            <br class="hidden md:block">
-            Solutions
+        <div ref="titleRef" class="mb-8">
+          <div class="inline-flex items-center justify-center w-16 h-16 bg-white/20 backdrop-blur-sm rounded-2xl mb-6">
+            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/>
+            </svg>
+          </div>
+          <h2 class="text-4xl md:text-5xl font-bold text-white mb-4 leading-tight">
+            Our <span class="text-blue-300">Expertise</span>
           </h2>
+          <div class="w-24 h-1 bg-gradient-to-r from-blue-300 to-white mx-auto rounded-full"></div>
         </div>
         <div ref="descriptionRef" class="max-w-3xl mx-auto">
-          <p class="text-xl md:text-2xl text-gray-600 leading-relaxed font-light">
-            From sea to air to land, we deliver innovative freight forwarding solutions 
-            that streamline your supply chain and connect your business to global markets.
+          <p class="text-xl md:text-2xl text-gray-200 leading-relaxed font-light">
+            Comprehensive logistics solutions that streamline your supply chain 
+            and connect your business to global markets with reliability and efficiency.
           </p>
         </div>
       </div>
 
       <!-- Professional Services Grid -->
       <div ref="gridRef" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
-        <ServiceCard
+        <div
           v-for="(service, index) in services"
           :key="service.id"
-          :service="service"
           :ref="el => serviceCardRefs[index] = el"
-          class="transform transition-all duration-500 hover:scale-105"
-        />
+          class="group bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20 hover:bg-white/20 transition-all duration-500 hover:scale-105 hover:shadow-2xl"
+        >
+          <!-- Service Icon -->
+          <div class="flex items-center justify-center w-16 h-16 bg-gradient-to-br from-white/20 to-white/10 rounded-xl mb-6 group-hover:scale-110 transition-transform duration-300">
+            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" v-html="service.iconSvg"></svg>
+          </div>
+
+          <!-- Service Content -->
+          <div class="space-y-4">
+            <h3 class="text-2xl font-bold text-white mb-3 group-hover:text-blue-200 transition-colors duration-300">
+              {{ service.title }}
+            </h3>
+            <p class="text-gray-200 leading-relaxed mb-6">
+              {{ service.description }}
+            </p>
+
+            <!-- Service Features -->
+            <ul class="space-y-2 mb-6">
+              <li 
+                v-for="feature in service.features" 
+                :key="feature"
+                class="flex items-center text-sm text-gray-300"
+              >
+                <svg class="w-4 h-4 text-blue-300 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                </svg>
+                {{ feature }}
+              </li>
+            </ul>
+
+            <!-- Service Link -->
+            <router-link 
+              :to="service.link"
+              class="inline-flex items-center text-blue-300 hover:text-white font-semibold transition-colors duration-300 group-hover:translate-x-1"
+            >
+              Learn More
+              <svg class="w-4 h-4 ml-2 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+              </svg>
+            </router-link>
+          </div>
+        </div>
       </div>
 
-      <!-- Premium CTA Section -->
+      <!-- Professional CTA Section -->
       <div ref="ctaRef" class="text-center">
-        <div class="bg-gradient-to-r from-blue-900 to-blue-800 rounded-3xl p-12 md:p-16 text-white relative overflow-hidden shadow-2xl">
+        <div class="bg-white/10 backdrop-blur-md rounded-3xl p-12 md:p-16 border border-white/20 relative overflow-hidden">
           <!-- CTA Background Pattern -->
           <div class="absolute inset-0 opacity-5">
-            <div class="absolute top-4 right-4 w-20 h-20 border-2 border-white rounded-full premium-float"></div>
-            <div class="absolute bottom-4 left-4 w-16 h-16 border-2 border-white rounded-full premium-float" style="animation-delay: 2s;"></div>
-            <div class="absolute top-1/2 left-1/3 w-12 h-12 border border-white rounded-full premium-float" style="animation-delay: 4s;"></div>
+            <div class="absolute top-4 right-4 w-20 h-20 border-2 border-white rounded-full animate-pulse"></div>
+            <div class="absolute bottom-4 left-4 w-16 h-16 border-2 border-white rounded-full animate-pulse" style="animation-delay: 2s;"></div>
           </div>
           
           <div class="relative z-10">
-            <h3 class="text-3xl md:text-4xl font-bold mb-4">Ready to Optimize Your Supply Chain?</h3>
-            <p class="text-xl text-gray-200 mb-8 max-w-2xl mx-auto">
-              Get a free quote today and discover how our logistics expertise can transform your business operations.
+            <h3 class="text-3xl md:text-4xl font-bold text-white mb-4">
+              Ready to Optimize Your Supply Chain?
+            </h3>
+            <p class="text-xl text-gray-200 mb-8 max-w-2xl mx-auto leading-relaxed">
+              Get a free quote today and discover how our logistics expertise 
+              can transform your business operations and drive growth.
             </p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
               <router-link 
                 ref="primaryCtaBtn"
                 to="/contact" 
-                class="group bg-white text-blue-900 px-10 py-4 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 relative overflow-hidden shadow-lg"
+                class="group bg-white text-[#1a4a7a] px-10 py-4 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 relative overflow-hidden shadow-lg hover:shadow-2xl"
               >
-                <span class="relative z-10">Get Free Quote</span>
-                <div class="absolute inset-0 bg-gradient-to-r from-blue-50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <span class="relative z-10 flex items-center justify-center">
+                  Get Free Quote
+                  <svg class="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+                  </svg>
+                </span>
               </router-link>
               <router-link 
                 ref="secondaryCtaBtn"
                 to="/services" 
-                class="group bg-transparent border-2 border-white text-white hover:bg-white hover:text-blue-900 px-10 py-4 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105"
+                class="group bg-transparent border-2 border-white text-white hover:bg-white hover:text-[#1a4a7a] px-10 py-4 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105"
               >
-                <span class="relative z-10 flex items-center">
+                <span class="relative z-10 flex items-center justify-center">
                   View All Services
                   <svg class="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
@@ -84,7 +136,6 @@
 <script setup>
 import { ref, onMounted, nextTick } from 'vue';
 import { gsap } from 'gsap';
-import ServiceCard from '../common/ServiceCard.vue';
 
 // Template refs
 const servicesRef = ref(null);
@@ -97,67 +148,55 @@ const primaryCtaBtn = ref(null);
 const secondaryCtaBtn = ref(null);
 const serviceCardRefs = ref([]);
 
-// Real services data from Arfan Express brochure
+// Professional services data with SVG icons
 const services = ref([
   {
     id: 1,
     title: 'Global Ocean Freight',
     description: 'Cost-effective sea freight services with flexible options tailored to your specific needs across the globe.',
-    icon: '🚢',
+    iconSvg: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"/>',
     features: ['Full Container Load (FCL)', 'Less-than-Container Load (LCL)', 'Consolidation Services', 'NVOCC Services'],
-    link: '/services/ocean-freight',
-    color: 'blue',
-    gradient: 'from-blue-500 to-blue-600'
+    link: '/services/ocean-freight'
   },
   {
     id: 2,
     title: 'Express Air Freight',
     description: 'Fast and reliable air cargo services for time-critical shipments across international borders.',
-    icon: '✈️',
+    iconSvg: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>',
     features: ['Priority Air Cargo', 'Economy Air Freight', 'Charter Services', 'Real-Time Tracking'],
-    link: '/services/air-freight',
-    color: 'green',
-    gradient: 'from-green-500 to-green-600'
+    link: '/services/air-freight'
   },
   {
     id: 3,
     title: 'Road Transport Solutions',
     description: 'Smooth and reliable ground transportation for domestic and cross-border shipments.',
-    icon: '🚛',
+    iconSvg: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM21 17a2 2 0 11-4 0 2 2 0 014 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 17h16v-6a4 4 0 014-4V6a1 1 0 00-1-1H4a1 1 0 00-1 1v11z"/>',
     features: ['Domestic Trucking', 'Cross-Border Trucking', 'Less-than-Truckload (LTL)', 'Last-Mile Delivery'],
-    link: '/services/road-transport',
-    color: 'yellow',
-    gradient: 'from-yellow-500 to-orange-500'
+    link: '/services/road-transport'
   },
   {
     id: 4,
     title: 'Customs Brokerage',
     description: 'Expert customs brokerage services ensuring smooth border crossings without unnecessary delays.',
-    icon: '📋',
+    iconSvg: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>',
     features: ['Full Customs Clearance', 'Import/Export Documentation', 'Tariff Optimization', 'Compliance Consulting'],
-    link: '/services/customs-clearance',
-    color: 'purple',
-    gradient: 'from-purple-500 to-purple-600'
+    link: '/services/customs-clearance'
   },
   {
     id: 5,
     title: 'Value-Added Logistics',
     description: 'Specialized services to enhance your supply chain and optimize logistics operations.',
-    icon: '📦',
+    iconSvg: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>',
     features: ['Warehousing & Distribution', 'Packaging & Labeling', 'Quality Control', 'Risk Management'],
-    link: '/services/value-added',
-    color: 'red',
-    gradient: 'from-red-500 to-red-600'
+    link: '/services/value-added'
   },
   {
     id: 6,
     title: 'Supply Chain Management',
     description: 'Integrated supply chain management services ensuring efficient operations from sourcing to delivery.',
-    icon: '⚙️',
+    iconSvg: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>',
     features: ['Vendor Management', 'Route Optimization', 'Multi-Modal Solutions', 'Advanced Analytics'],
-    link: '/services/supply-chain',
-    color: 'indigo',
-    gradient: 'from-indigo-500 to-indigo-600'
+    link: '/services/supply-chain'
   }
 ]);
 
@@ -300,19 +339,66 @@ onMounted(() => {
 </script>
 
 <style scoped>
-/* Enhanced hover effects */
-.group:hover .relative::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
-  transition: left 0.6s;
+/* Logistics Background Image */
+.logistics-background-image {
+  background-image: url('/images/logistic.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
-.group:hover .relative::before {
-  left: 100%;
+/* Glass morphism effects */
+.backdrop-blur-md {
+  backdrop-filter: blur(16px);
+}
+
+/* Enhanced hover effects for service cards */
+.group:hover {
+  transform: translateY(-8px);
+}
+
+/* Smooth animations */
+.transition-all {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Professional button effects */
+.group:hover svg {
+  transform: translateX(0.25rem);
+}
+
+/* Custom pulse animation */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .logistics-background-image {
+    background-position: center center;
+  }
+}
+
+/* Text shadow for better readability */
+.text-white {
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Service card enhancements */
+.group:hover .text-blue-200 {
+  color: rgb(191 219 254);
+}
+
+.group:hover .scale-110 {
+  transform: scale(1.1);
 }
 </style> 

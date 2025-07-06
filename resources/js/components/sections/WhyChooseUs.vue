@@ -1,66 +1,63 @@
 <template>
-  <section class="py-20 bg-white">
-    <div class="container mx-auto px-6">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-        <!-- Content -->
-        <div data-aos="fade-right">
-          <h2 class="text-4xl md:text-5xl font-bold text-neutral-600 mb-6">
-            Why Choose <span class="text-primary">Arfan Express?</span>
-          </h2>
-          <p class="text-xl text-neutral-500 mb-8 leading-relaxed">
-            With over 15 years of experience in global logistics, we've built a reputation 
-            for reliability, efficiency, and exceptional customer service.
+  <section class="relative py-16 overflow-hidden bg-gray-50">
+    <!-- Plan Background Image with Light Overlay -->
+    <div class="absolute inset-0 plan-background-image opacity-20"></div>
+    
+    <!-- Light Professional Overlay -->
+    <div class="absolute inset-0 bg-gradient-to-br from-white/95 via-gray-50/90 to-blue-50/95"></div>
+    
+    <!-- Subtle Light Pattern -->
+    <div class="absolute inset-0 opacity-5">
+      <div class="absolute inset-0" style="background-image: radial-gradient(circle at 25% 25%, #1a4a7a 2px, transparent 2px), radial-gradient(circle at 75% 75%, #2a5a8a 2px, transparent 2px); background-size: 40px 40px;"></div>
+    </div>
+
+    <div class="container mx-auto px-6 relative z-10">
+      <!-- Section Header -->
+      <div class="text-center mb-12">
+        <div class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-[#1a4a7a] to-[#2a5a8a] rounded-2xl mb-6">
+          <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/>
+          </svg>
+        </div>
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+          Why Choose Us?
+        </h2>
+        <div class="w-20 h-1 bg-gradient-to-r from-[#1a4a7a] to-[#2a5a8a] mx-auto rounded-full"></div>
+      </div>
+
+      <!-- Features Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div
+          v-for="(feature, index) in features"
+          :key="feature.id"
+          class="text-center group bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-100"
+        >
+          <!-- Feature Icon -->
+          <div class="flex items-center justify-center w-16 h-16 bg-gradient-to-br from-[#1a4a7a] to-[#2a5a8a] rounded-xl mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
+            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" v-html="feature.iconSvg"></svg>
+          </div>
+
+          <!-- Feature Content -->
+          <h3 class="text-xl font-bold text-gray-800 mb-3 group-hover:text-[#1a4a7a] transition-colors duration-300">
+            {{ feature.title }}
+          </h3>
+          <p class="text-gray-600 text-sm leading-relaxed">
+            {{ feature.description }}
           </p>
-
-          <div class="space-y-6">
-            <div 
-              v-for="(feature, index) in features" 
-              :key="feature.id"
-              class="flex items-start"
-              :data-aos="'fade-up'"
-              :data-aos-delay="index * 100"
-            >
-              <div class="flex-shrink-0 w-12 h-12 bg-primary text-white rounded-lg flex items-center justify-center mr-4">
-                <component :is="feature.icon" class="w-6 h-6" />
-              </div>
-              <div>
-                <h3 class="text-xl font-semibold text-neutral-600 mb-2">{{ feature.title }}</h3>
-                <p class="text-neutral-500">{{ feature.description }}</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="mt-10">
-            <router-link 
-              to="/about" 
-              class="inline-flex items-center bg-secondary hover:bg-green-600 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 transform hover:scale-105"
-            >
-              Learn More About Us
-              <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-              </svg>
-            </router-link>
-          </div>
         </div>
+      </div>
 
-        <!-- Image/Illustration -->
-        <div class="relative" data-aos="fade-left">
-          <div class="relative z-10">
-            <!-- Placeholder for image or illustration -->
-            <div class="aspect-w-4 aspect-h-3 bg-gradient-to-br from-primary to-blue-600 rounded-2xl overflow-hidden">
-              <div class="flex items-center justify-center text-white text-6xl">
-                🌐
-              </div>
-            </div>
-            
-            <!-- Floating Elements -->
-            <div class="absolute -top-6 -right-6 w-24 h-24 bg-secondary rounded-full opacity-20 animate-float"></div>
-            <div class="absolute -bottom-6 -left-6 w-32 h-32 bg-accent rounded-full opacity-10 animate-float" style="animation-delay: 1s;"></div>
-          </div>
-          
-          <!-- Background decoration -->
-          <div class="absolute inset-0 bg-gradient-to-br from-blue-100 to-green-100 rounded-2xl transform rotate-3 scale-105 -z-10"></div>
-        </div>
+      <!-- CTA Section -->
+      <div class="text-center mt-12">
+        <router-link 
+          to="/contact" 
+          class="inline-flex items-center bg-gradient-to-r from-[#1a4a7a] to-[#2a5a8a] text-white px-8 py-3 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-2xl"
+        >
+          Get Started Today
+          <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+          </svg>
+        </router-link>
       </div>
     </div>
   </section>
@@ -69,43 +66,72 @@
 <script setup>
 import { ref } from 'vue';
 
-// Define icon components inline for simplicity
-const CheckCircleIcon = () => {
-  return `<svg fill="currentColor" viewBox="0 0 20 20">
-    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-  </svg>`;
-};
-
+// Features based on brochure content
 const features = ref([
   {
     id: 1,
-    icon: 'CheckCircleIcon',
-    title: 'Global Network',
-    description: 'Extensive worldwide network ensuring your cargo reaches any destination efficiently.'
+    title: 'Customizable Logistics Solutions',
+    description: 'Tailored logistics solutions designed to meet your specific business requirements and challenges.',
+    iconSvg: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>'
   },
   {
     id: 2,
-    icon: 'CheckCircleIcon',
-    title: 'Real-time Tracking',
-    description: 'Advanced tracking systems providing complete visibility of your shipments 24/7.'
+    title: 'Timely Deliveries, Every Time',
+    description: 'Reliable delivery schedules with real-time tracking ensuring your cargo arrives on time, every time.',
+    iconSvg: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>'
   },
   {
     id: 3,
-    icon: 'CheckCircleIcon',
-    title: 'Expert Team',
-    description: 'Professional logistics experts with deep industry knowledge and experience.'
+    title: 'Cost-Effective Freight Solutions',
+    description: 'Competitive pricing strategies that optimize your logistics budget without compromising quality.',
+    iconSvg: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>'
   },
   {
     id: 4,
-    icon: 'CheckCircleIcon',
-    title: 'Cost Effective',
-    description: 'Competitive pricing without compromising on quality and service excellence.'
-  },
-  {
-    id: 5,
-    icon: 'CheckCircleIcon',
-    title: 'Customer Support',
-    description: 'Dedicated 24/7 customer support team ready to assist with any requirements.'
+    title: 'Comprehensive Customs Brokerage',
+    description: 'Expert customs clearance services ensuring smooth border crossings and regulatory compliance.',
+    iconSvg: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>'
   }
 ]);
-</script> 
+</script>
+
+<style scoped>
+/* Plan Background Image */
+.plan-background-image {
+  background-image: url('/images/plan.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Text shadow for better readability */
+.text-white {
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.text-gray-200 {
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Hover effects */
+.group:hover svg {
+  transform: scale(1.1);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .plan-background-image {
+    background-position: center center;
+  }
+  
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+/* Smooth transitions */
+.transition-all {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+</style> 

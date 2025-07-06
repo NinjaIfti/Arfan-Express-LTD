@@ -3,22 +3,30 @@
     <!-- Hero Section -->
     <HeroSection />
     
-    <!-- Services Overview -->
+    <!-- Company Logos Slider -->
+    <LogoSlider />
+    
+    <!-- Who We Are Section -->
+    <WhoWeAre />
+    
+    <!-- Our Expertise (Services Overview) -->
     <ServicesOverview />
     
     <!-- Why Choose Us -->
     <WhyChooseUs />
     
-    <!-- Stats Section -->
-    <StatsSection />
+    <!-- Stats Section
+    <StatsSection /> -->
     
-    <!-- Testimonials -->
-    <TestimonialsSection />
+    <!-- Testimonials
+    <TestimonialsSection /> -->
   </div>
 </template>
 
 <script setup>
 import HeroSection from '../components/sections/HeroSection.vue';
+import LogoSlider from '../components/common/LogoSlider.vue';
+import WhoWeAre from '../components/sections/WhoWeAre.vue';
 import ServicesOverview from '../components/sections/ServicesOverview.vue';
 import WhyChooseUs from '../components/sections/WhyChooseUs.vue';
 import StatsSection from '../components/sections/StatsSection.vue';

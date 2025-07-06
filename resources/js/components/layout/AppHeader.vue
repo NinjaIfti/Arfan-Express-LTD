@@ -1,5 +1,5 @@
 <template>
-  <header ref="headerRef" class="sticky top-0 z-50 transition-all duration-500" :class="headerClass">
+  <header ref="headerRef" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500" :class="headerClass">
     <nav class="max-w-7xl mx-auto px-6">
       <div class="flex justify-between items-center h-20">
         <!-- Professional Logo -->
@@ -171,7 +171,7 @@ const headerClass = computed(() => {
   if (isScrolled.value) {
     return 'bg-white/95 backdrop-blur-lg shadow-2xl border-b border-gray-200/50';
   }
-  return 'bg-transparent';
+  return 'bg-white/90 backdrop-blur-md shadow-lg';
 });
 
 const handleScroll = () => {

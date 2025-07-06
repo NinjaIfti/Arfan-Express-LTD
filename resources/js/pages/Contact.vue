@@ -148,20 +148,8 @@
             Visit our offices across Bangladesh or contact us for directions to the nearest location
           </p>
         </div>
-
-        <div ref="mapContainer" class="bg-gradient-to-br from-gray-100 to-gray-50 rounded-3xl h-96 flex items-center justify-center shadow-xl border border-gray-200 relative overflow-hidden">
-          <!-- Background Pattern -->
-          <div class="absolute inset-0 opacity-5">
-            <div class="absolute top-10 left-10 w-24 h-24 border-2 border-primary-300 rounded-full"></div>
-            <div class="absolute bottom-10 right-10 w-16 h-16 border border-secondary-300 rounded-full"></div>
-          </div>
-          
-          <div class="text-center relative z-10">
-            <div class="text-7xl mb-6">🗺️</div>
-            <h3 class="text-2xl font-bold text-primary-800 mb-4">Interactive Map</h3>
-            <p class="text-gray-600 text-lg mb-2">Bangladesh Office Locations</p>
-            <p class="text-sm text-gray-500">Dhaka • Chittagong • Khulna</p>
-          </div>
+        <div class="bg-gradient-to-br from-gray-100 to-gray-50 rounded-3xl shadow-xl border border-gray-200 relative overflow-hidden p-6">
+          <OfficeMap :locations="mapLocations" />
         </div>
       </div>
     </section>
@@ -172,6 +160,7 @@
 import { ref, onMounted, nextTick } from 'vue';
 import { gsap } from 'gsap';
 import ContactForm from '../components/common/ContactForm.vue';
+import OfficeMap from '../components/common/OfficeMap.vue';
 
 // Template refs
 const contactRef = ref(null);
@@ -278,6 +267,30 @@ const ClockIcon = {
     </svg>
   `
 };
+
+const mapLocations = [
+  {
+    id: 1,
+    city: 'Dhaka Corporate Office',
+    address: 'Azhar Comfort Complex (9th Floor), Flat No. B, GA-130/A, Progoti Shoroni, Gulshan-01, Dhaka-1212',
+    lat: 23.7925,
+    lng: 90.4078
+  },
+  {
+    id: 2,
+    city: 'Chittagong Office',
+    address: 'Dr. Rahman Plaza, 1403, Shek Mujib Road, Agrabad, Chittagong CIA-4100',
+    lat: 22.3364,
+    lng: 91.8317
+  },
+  {
+    id: 3,
+    city: 'Khulna Office',
+    address: 'Faruk Chamber (10th Floor), 15, KDA Avenue, Sheikhpapa, Khulna-9100',
+    lat: 22.8456,
+    lng: 89.5403
+  }
+];
 
 const initProfessionalAnimations = () => {
   // Hero Section Animation

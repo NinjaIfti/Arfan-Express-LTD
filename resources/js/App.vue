@@ -25,7 +25,7 @@
       <AppHeader />
       
       <!-- Main Content with Page Transitions -->
-      <main class="flex-1 relative">
+      <main class="flex-1 relative pt-20">
         <router-view v-slot="{ Component, route }">
           <transition
             :name="transitionName"
