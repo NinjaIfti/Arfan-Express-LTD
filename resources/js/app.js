@@ -54,10 +54,18 @@ const app = createApp(App);
 app.use(router);
 app.use(pinia);
 
+// Mount app first
+app.mount('#app');
+
 // Initialize AOS
-app.mount('#app', () => {
-    AOS.init({
-        duration: 1000,
-        once: true,
-    });
+AOS.init({
+    duration: 1000,
+    once: true,
+});
+
+// Refresh AOS on every route change
+router.afterEach(() => {
+    setTimeout(() => {
+        AOS.refresh();
+    }, 400);
 });

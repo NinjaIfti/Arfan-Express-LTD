@@ -14,20 +14,14 @@
       </div>
     </section>
 
-    <!-- Services Grid -->
-    <section class="py-20 bg-background-50">
-      <div class="container mx-auto px-6">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <ServiceCard
-            v-for="(service, index) in services"
-            :key="service.id"
-            :service="service"
-            :data-aos="'fade-up'"
-            :data-aos-delay="index * 100"
-          />
-        </div>
-      </div>
-    </section>
+    <!-- Individual Service Components -->
+    <OceanFreightService />
+    <ValueAddedLogisticsService />
+    <CustomsBrokerageService />
+    <RoadTransportService />
+    <AirFreightService />
+    <SupplyChainService />
+    <DeliveryTermsService />
 
     <!-- Why Choose Our Services -->
     <section class="py-20 bg-white">
@@ -95,64 +89,14 @@
 
 <script setup>
 import { ref } from 'vue';
-import ServiceCard from '../components/common/ServiceCard.vue';
-
-const services = ref([
-  {
-    id: 1,
-    title: 'Ocean Freight',
-    description: 'Cost-effective sea shipping solutions for large cargo volumes with global coverage and reliable delivery schedules.',
-    icon: '🚢',
-    features: ['FCL & LCL Services', 'Global Port Coverage', 'Customs Clearance', 'Container Tracking', 'Cargo Insurance'],
-    link: '/services/ocean-freight',
-    color: 'blue'
-  },
-  {
-    id: 2,
-    title: 'Air Freight',
-    description: 'Fast and reliable air cargo services for time-sensitive shipments with priority handling worldwide.',
-    icon: '✈️',
-    features: ['Express Delivery', 'Priority Handling', 'Real-time Tracking', 'Dangerous Goods', 'Same Day Service'],
-    link: '/services/air-freight',
-    color: 'green'
-  },
-  {
-    id: 3,
-    title: 'Road Transport',
-    description: 'Efficient ground transportation and last-mile delivery solutions with comprehensive tracking.',
-    icon: '🚛',
-    features: ['Door-to-Door', 'Last Mile Delivery', 'Cross Border', 'Temperature Control', 'Flexible Scheduling'],
-    link: '/services/road-transport',
-    color: 'yellow'
-  },
-  {
-    id: 4,
-    title: 'Customs Clearance',
-    description: 'Expert customs brokerage services ensuring smooth border crossings and compliance.',
-    icon: '📋',
-    features: ['Documentation', 'Duty Calculation', 'Compliance Check', 'Fast Processing', 'Regulatory Updates'],
-    link: '/services/customs-clearance',
-    color: 'purple'
-  },
-  {
-    id: 5,
-    title: 'Warehousing',
-    description: 'Secure storage and distribution services with modern facilities and inventory management.',
-    icon: '🏭',
-    features: ['Climate Control', 'Inventory Management', 'Pick & Pack', 'Cross Docking', 'Quality Control'],
-    link: '/services/warehousing',
-    color: 'red'
-  },
-  {
-    id: 6,
-    title: 'Project Cargo',
-    description: 'Specialized handling for oversized and complex cargo with dedicated project management.',
-    icon: '⚙️',
-    features: ['Heavy Lift', 'Route Planning', 'Special Equipment', 'Risk Management', 'Project Coordination'],
-    link: '/services/project-cargo',
-    color: 'indigo'
-  }
-]);
+import OceanFreightService from '../components/services/OceanFreightService.vue';
+import ValueAddedLogisticsService from '../components/services/ValueAddedLogisticsService.vue';
+import CustomsBrokerageService from '../components/services/CustomsBrokerageService.vue';
+import RoadTransportService from '../components/services/RoadTransportService.vue';
+import AirFreightService from '../components/services/AirFreightService.vue';
+import SupplyChainService from '../components/services/SupplyChainService.vue';
+import DeliveryTermsService from '../components/services/DeliveryTermsService.vue';
+import { gsap } from 'gsap';
 
 const features = ref([
   {

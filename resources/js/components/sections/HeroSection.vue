@@ -122,14 +122,7 @@
       </div>
     </div>
 
-    <!-- Premium Scroll Indicator -->
-    <div ref="scrollIndicator" class="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-30">
-      <div class="animate-bounce">
-        <svg class="w-8 h-8 text-white premium-glow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
-        </svg>
-      </div>
-    </div>
+    
 
     
   </section>

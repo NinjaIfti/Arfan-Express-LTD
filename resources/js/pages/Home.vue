@@ -15,11 +15,9 @@
     <!-- Why Choose Us -->
     <WhyChooseUs />
     
-    <!-- Stats Section
-    <StatsSection /> -->
+
     
-    <!-- Testimonials
-    <TestimonialsSection /> -->
+    
   </div>
 </template>
 
@@ -29,8 +27,7 @@ import LogoSlider from '../components/common/LogoSlider.vue';
 import WhoWeAre from '../components/sections/WhoWeAre.vue';
 import ServicesOverview from '../components/sections/ServicesOverview.vue';
 import WhyChooseUs from '../components/sections/WhyChooseUs.vue';
-import StatsSection from '../components/sections/StatsSection.vue';
-import TestimonialsSection from '../components/sections/TestimonialsSection.vue';
+
 
 // SEO and meta tags could be added here
 </script>

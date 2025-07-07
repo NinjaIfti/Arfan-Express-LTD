@@ -184,7 +184,7 @@ const toggleMobileMenu = () => {
   if (isMobileMenuOpen.value) {
     nextTick(() => {
       // Animate mobile menu items in
-      gsap.from(mobileNavRefs.value, {
+      gsap.from(mobileNavRefs.value.filter(Boolean), {
         opacity: 0,
         y: 20,
         duration: 0.3,
@@ -201,7 +201,7 @@ const closeMobileMenu = () => {
 
 const initHeaderAnimations = () => {
   // Initial animation for navigation items
-  gsap.from(navRefs.value, {
+  gsap.from(navRefs.value.filter(Boolean), {
     opacity: 0,
     y: -20,
     duration: 0.6,
@@ -211,29 +211,35 @@ const initHeaderAnimations = () => {
   });
 
   // Logo animation
-  gsap.from(logoRef.value, {
-    opacity: 0,
-    x: -30,
-    duration: 0.8,
-    ease: "back.out(1.7)",
-    delay: 0.2
-  });
+  if (logoRef.value) {
+    gsap.from(logoRef.value, {
+      opacity: 0,
+      x: -30,
+      duration: 0.8,
+      ease: "back.out(1.7)",
+      delay: 0.2
+    });
+  }
 
   // CTA button animation
-  gsap.from(ctaRef.value, {
-    opacity: 0,
-    scale: 0.8,
-    duration: 0.6,
-    ease: "back.out(1.7)",
-    delay: 0.8
-  });
+  if (ctaRef.value) {
+    gsap.from(ctaRef.value, {
+      opacity: 0,
+      scale: 0.8,
+      duration: 0.6,
+      ease: "back.out(1.7)",
+      delay: 0.8
+    });
+  }
 
   // Header scroll animation
-  gsap.to(headerRef.value, {
-    y: 0,
-    duration: 0.6,
-    ease: "power2.out"
-  });
+  if (headerRef.value) {
+    gsap.to(headerRef.value, {
+      y: 0,
+      duration: 0.6,
+      ease: "power2.out"
+    });
+  }
 };
 
 onMounted(() => {

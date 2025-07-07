@@ -120,7 +120,7 @@ const initCardAnimations = () => {
       cardRef.value.forEach(el => {
         if (el && el instanceof HTMLElement) {
           el.addEventListener('mouseenter', () => {
-            gsap.to(featureRefs.value, {
+            gsap.to(featureRefs.value.filter(Boolean), {
               opacity: 1,
               x: 0,
               duration: 0.5,
@@ -135,7 +135,7 @@ const initCardAnimations = () => {
             });
           });
           el.addEventListener('mouseleave', () => {
-            gsap.to(featureRefs.value, {
+            gsap.to(featureRefs.value.filter(Boolean), {
               opacity: 0.8,
               x: 0,
               duration: 0.3,
@@ -152,7 +152,7 @@ const initCardAnimations = () => {
       });
     } else if (cardRef.value instanceof HTMLElement) {
       cardRef.value.addEventListener('mouseenter', () => {
-        gsap.to(featureRefs.value, {
+        gsap.to(featureRefs.value.filter(Boolean), {
           opacity: 1,
           x: 0,
           duration: 0.5,
@@ -167,7 +167,7 @@ const initCardAnimations = () => {
         });
       });
       cardRef.value.addEventListener('mouseleave', () => {
-        gsap.to(featureRefs.value, {
+        gsap.to(featureRefs.value.filter(Boolean), {
           opacity: 0.8,
           x: 0,
           duration: 0.3,
