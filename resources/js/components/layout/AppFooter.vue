@@ -20,9 +20,12 @@
         <!-- Professional Company Info -->
         <div class="space-y-6">
           <div class="flex items-center space-x-4">
-            <div class="w-14 h-14 bg-gradient-to-br from-secondary-500 to-primary-600 rounded-2xl shadow-2xl flex items-center justify-center relative overflow-hidden">
-              <div class="absolute inset-0 bg-gradient-to-tr from-white/10 to-transparent"></div>
-              <span class="text-white font-bold text-xl relative z-10">AE</span>
+            <div class="w-14 h-14 rounded-2xl shadow-2xl flex items-center justify-center relative overflow-hidden bg-white p-2">
+              <img 
+                :src="logoImage" 
+                alt="Arfan Express Limited Logo" 
+                class="w-full h-full object-contain"
+              />
             </div>
             <div>
               <h3 class="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-secondary-300 to-primary-300 font-poppins">Arfan Express</h3>
@@ -142,6 +145,7 @@
 
 <script setup>
 import { computed } from 'vue';
+import logoImage from '@/assets/images/logo.jpg';
 
 // Professional social media icons with inline SVG paths
 const socialLinks = [
@@ -215,13 +219,13 @@ const contactInfo = [
   {
     type: 'phone',
     label: 'Phone Number',
-    value: '+880 171 1560 113',
+    value: '+8801 722 339 542',
     iconPath: '<path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>'
   },
   {
     type: 'email',
     label: 'Email Address',
-    value: 'info@arfanexpressbd.com',
+    value: 'kibria@arfanexpressbd.com & motiur@arfanexpressbd.com',
     iconPath: '<path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>'
   },
   {

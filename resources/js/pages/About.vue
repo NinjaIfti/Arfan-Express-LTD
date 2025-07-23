@@ -1,9 +1,19 @@
 <template>
   <div ref="aboutRef" class="about-page">
     <!-- Professional Hero Section -->
-    <section ref="heroRef" class="relative py-24 bg-gradient-to-br from-primary-900 via-primary-800 to-primary-700 text-white overflow-hidden">
+    <section ref="heroRef" class="relative py-24 bg-gray-900 text-white overflow-hidden">
+      <!-- Background Image -->
+      <div class="absolute inset-0 z-0">
+        <img 
+          :src="whoweImage" 
+          alt="About Arfan Express" 
+          class="w-full h-full object-cover opacity-40"
+        />
+        <div class="absolute inset-0 bg-gradient-to-br from-primary-900/40 via-primary-800/40 to-primary-700/40"></div>
+      </div>
+      
       <!-- Background Pattern -->
-      <div class="absolute inset-0 opacity-10">
+      <div class="absolute inset-0 opacity-10 z-5">
         <div class="absolute top-20 left-10 w-32 h-32 border-2 border-white rounded-full"></div>
         <div class="absolute bottom-20 right-20 w-48 h-48 border border-white rounded-full"></div>
         <div class="absolute top-1/2 left-1/3 w-24 h-24 border-2 border-white rounded-full transform -translate-x-1/2 -translate-y-1/2"></div>
@@ -17,7 +27,7 @@
               <span class="text-white">Arfan Express</span>
               <br>
               <span class="text-4xl md:text-5xl font-light text-secondary-300">LIMITED</span>
-          </h1>
+            </h1>
           </div>
           <p ref="heroSubtitle" class="text-2xl md:text-3xl font-light max-w-4xl mx-auto leading-relaxed">
             Leading freight forwarding company dedicated to delivering reliable and cost-efficient logistics services worldwide
@@ -62,9 +72,13 @@
           </div>
           <div ref="storyVisual" class="relative">
             <div class="relative">
-              <!-- Professional Visual -->
+              <!-- Professional Visual with Icon -->
               <div class="bg-gradient-to-br from-primary-600 to-secondary-600 rounded-3xl p-12 text-center text-white shadow-2xl transform rotate-3 hover:rotate-0 transition-transform duration-700">
-                <div class="text-8xl mb-6">🌏</div>
+                <div class="flex justify-center mb-6">
+                  <svg class="w-20 h-20 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                  </svg>
+                </div>
                 <h3 class="text-2xl font-bold mb-4">Global Reach</h3>
                 <p class="text-lg opacity-90">Connecting businesses across continents</p>
               </div>
@@ -72,7 +86,7 @@
               <div class="absolute -top-8 -left-8 bg-white rounded-2xl shadow-xl p-6 text-center">
                 <div class="text-3xl font-bold text-secondary-500">15+</div>
                 <div class="text-sm text-gray-600">Years Experience</div>
-                </div>
+              </div>
               <div class="absolute -bottom-6 -right-6 bg-white rounded-2xl shadow-xl p-6 text-center">
                 <div class="text-3xl font-bold text-primary-600">100+</div>
                 <div class="text-sm text-gray-600">Global Partners</div>
@@ -97,12 +111,18 @@
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <!-- Mission - Real from brochure -->
+          <!-- Mission -->
           <div ref="missionCard" class="group relative">
             <div class="bg-white rounded-3xl p-10 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-gray-100 h-full">
-              <div class="text-6xl mb-8 transition-transform duration-500 group-hover:scale-110">🎯</div>
-              <h3 class="text-2xl font-bold text-primary-800 mb-6">Our Mission</h3>
-              <p class="text-gray-600 leading-relaxed text-lg">
+              <div class="flex justify-center mb-8">
+                <div class="w-16 h-16 bg-gradient-to-br from-primary-500 to-primary-600 rounded-2xl flex items-center justify-center transition-transform duration-500 group-hover:scale-110">
+                  <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/>
+                  </svg>
+                </div>
+              </div>
+              <h3 class="text-2xl font-bold text-primary-800 mb-6 text-center">Our Mission</h3>
+              <p class="text-gray-600 leading-relaxed text-lg text-center">
                 To simplify global logistics through cost-effective, reliable, and tailored solutions 
                 that address our customers' pain points, ensuring timely delivery and seamless operations.
               </p>
@@ -111,12 +131,19 @@
             </div>
           </div>
 
-          <!-- Vision - Real from brochure -->
+          <!-- Vision -->
           <div ref="visionCard" class="group relative">
             <div class="bg-white rounded-3xl p-10 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-gray-100 h-full">
-              <div class="text-6xl mb-8 transition-transform duration-500 group-hover:scale-110">🚀</div>
-              <h3 class="text-2xl font-bold text-primary-800 mb-6">Our Vision</h3>
-              <p class="text-gray-600 leading-relaxed text-lg">
+              <div class="flex justify-center mb-8">
+                <div class="w-16 h-16 bg-gradient-to-br from-secondary-500 to-secondary-600 rounded-2xl flex items-center justify-center transition-transform duration-500 group-hover:scale-110">
+                  <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                  </svg>
+                </div>
+              </div>
+              <h3 class="text-2xl font-bold text-primary-800 mb-6 text-center">Our Vision</h3>
+              <p class="text-gray-600 leading-relaxed text-lg text-center">
                 To be the global leader in freight forwarding, delivering innovative logistics solutions 
                 that empower businesses to succeed in the global marketplace.
               </p>
@@ -128,24 +155,30 @@
           <!-- Values -->
           <div ref="valuesCard" class="group relative md:col-span-2 lg:col-span-1">
             <div class="bg-white rounded-3xl p-10 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-gray-100 h-full">
-              <div class="text-6xl mb-8 transition-transform duration-500 group-hover:scale-110">⭐</div>
-              <h3 class="text-2xl font-bold text-primary-800 mb-6">Our Values</h3>
-              <div class="space-y-3">
+              <div class="flex justify-center mb-8">
+                <div class="w-16 h-16 bg-gradient-to-br from-primary-600 to-secondary-500 rounded-2xl flex items-center justify-center transition-transform duration-500 group-hover:scale-110">
+                  <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                  </svg>
+                </div>
+              </div>
+              <h3 class="text-2xl font-bold text-primary-800 mb-6 text-center">Our Values</h3>
+              <div class="space-y-4">
                 <div class="flex items-center text-gray-600">
-                  <div class="w-2 h-2 bg-secondary-500 rounded-full mr-3"></div>
-                  <span>Reliability & Trust</span>
+                  <div class="w-3 h-3 bg-secondary-500 rounded-full mr-4 flex-shrink-0"></div>
+                  <span class="font-medium">Reliability & Trust</span>
                 </div>
                 <div class="flex items-center text-gray-600">
-                  <div class="w-2 h-2 bg-primary-500 rounded-full mr-3"></div>
-                  <span>Innovation & Excellence</span>
+                  <div class="w-3 h-3 bg-primary-500 rounded-full mr-4 flex-shrink-0"></div>
+                  <span class="font-medium">Innovation & Excellence</span>
                 </div>
                 <div class="flex items-center text-gray-600">
-                  <div class="w-2 h-2 bg-secondary-500 rounded-full mr-3"></div>
-                  <span>Customer-Centric Approach</span>
+                  <div class="w-3 h-3 bg-secondary-500 rounded-full mr-4 flex-shrink-0"></div>
+                  <span class="font-medium">Customer-Centric Approach</span>
                 </div>
                 <div class="flex items-center text-gray-600">
-                  <div class="w-2 h-2 bg-primary-500 rounded-full mr-3"></div>
-                  <span>Global Connectivity</span>
+                  <div class="w-3 h-3 bg-primary-500 rounded-full mr-4 flex-shrink-0"></div>
+                  <span class="font-medium">Global Connectivity</span>
                 </div>
               </div>
               <!-- Gradient Border -->
@@ -174,7 +207,11 @@
             class="group text-center"
           >
             <div class="bg-gradient-to-br from-gray-50 to-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2 border border-gray-100">
-              <div class="text-5xl mb-6 transition-transform duration-500 group-hover:scale-110">{{ feature.icon }}</div>
+              <div class="flex justify-center mb-6">
+                <div class="w-14 h-14 bg-gradient-to-br from-primary-500 to-secondary-500 rounded-xl flex items-center justify-center transition-transform duration-500 group-hover:scale-110">
+                  <component :is="feature.icon" class="w-7 h-7 text-white" />
+                </div>
+              </div>
               <h3 class="text-xl font-bold text-primary-800 mb-4">{{ feature.title }}</h3>
               <p class="text-gray-600 text-sm leading-relaxed">{{ feature.description }}</p>
             </div>
@@ -196,14 +233,14 @@
         <div ref="ctaContent">
           <h2 class="text-4xl md:text-5xl font-bold mb-6">
             Ready to Optimize Your Logistics?
-        </h2>
+          </h2>
           <p class="text-xl md:text-2xl font-light mb-10 max-w-3xl mx-auto">
             Join thousands of satisfied customers who trust us with their global logistics needs
-        </p>
+          </p>
           <div class="flex flex-col sm:flex-row gap-6 justify-center">
-        <router-link 
+            <router-link 
               ref="primaryCtaBtn"
-          to="/contact" 
+              to="/contact" 
               class="group bg-secondary-500 hover:bg-secondary-400 text-white px-10 py-4 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 relative overflow-hidden"
             >
               <span class="relative z-10">Get Free Quote</span>
@@ -218,9 +255,9 @@
                 Our Services
                 <svg class="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
-          </svg>
+                </svg>
               </span>
-        </router-link>
+            </router-link>
           </div>
         </div>
       </div>
@@ -229,8 +266,11 @@
 </template>
 
 <script setup>
-import { ref, onMounted, nextTick } from 'vue';
+import { ref, onMounted, nextTick, h } from 'vue';
 import { gsap } from 'gsap';
+
+// Import background image
+import whoweImage from '@/assets/images/whowe.jpg';
 
 // Template refs
 const aboutRef = ref(null);
@@ -253,29 +293,86 @@ const primaryCtaBtn = ref(null);
 const secondaryCtaBtn = ref(null);
 const featureRefs = ref([]);
 
-// Why Choose Us features based on brochure
+// Professional SVG Icon Components
+const GlobalNetworkIcon = () => h('svg', {
+  fill: 'none',
+  stroke: 'currentColor',
+  viewBox: '0 0 24 24',
+  xmlns: 'http://www.w3.org/2000/svg'
+}, [
+  h('path', {
+    'stroke-linecap': 'round',
+    'stroke-linejoin': 'round',
+    'stroke-width': '2',
+    d: 'M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z'
+  })
+]);
+
+const TimingIcon = () => h('svg', {
+  fill: 'none',
+  stroke: 'currentColor',
+  viewBox: '0 0 24 24',
+  xmlns: 'http://www.w3.org/2000/svg'
+}, [
+  h('path', {
+    'stroke-linecap': 'round',
+    'stroke-linejoin': 'round',
+    'stroke-width': '2',
+    d: 'M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z'
+  })
+]);
+
+const CostEffectiveIcon = () => h('svg', {
+  fill: 'none',
+  stroke: 'currentColor',
+  viewBox: '0 0 24 24',
+  xmlns: 'http://www.w3.org/2000/svg'
+}, [
+  h('path', {
+    'stroke-linecap': 'round',
+    'stroke-linejoin': 'round',
+    'stroke-width': '2',
+    d: 'M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z'
+  })
+]);
+
+const SecurityIcon = () => h('svg', {
+  fill: 'none',
+  stroke: 'currentColor',
+  viewBox: '0 0 24 24',
+  xmlns: 'http://www.w3.org/2000/svg'
+}, [
+  h('path', {
+    'stroke-linecap': 'round',
+    'stroke-linejoin': 'round',
+    'stroke-width': '2',
+    d: 'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z'
+  })
+]);
+
+// Why Choose Us features with professional icons
 const features = ref([
   {
     id: 1,
-    icon: "🌍",
+    icon: GlobalNetworkIcon,
     title: "Global Network",
     description: "Extensive worldwide coverage connecting major trade routes and destinations"
   },
   {
     id: 2,
-    icon: "⚡",
+    icon: TimingIcon,
     title: "Timely Delivery",
     description: "Reliable schedules and on-time performance for all your shipments"
   },
   {
     id: 3,
-    icon: "💼",
+    icon: CostEffectiveIcon,
     title: "Cost-Effective",
     description: "Competitive pricing with transparent cost structures and no hidden fees"
   },
   {
     id: 4,
-    icon: "🛡️",
+    icon: SecurityIcon,
     title: "Secure & Safe",
     description: "Advanced tracking, insurance options, and risk management protocols"
   }
@@ -346,7 +443,7 @@ const initProfessionalAnimations = () => {
   }, "-=0.3");
 
   // Why Choose Us
-  gsap.set([whyUsHeader.value, ...featureRefs.value], { opacity: 0, y: 60 });
+  gsap.set([whyUsHeader.value, ...featureRefs.value.filter(Boolean)], { opacity: 0, y: 60 });
   gsap.timeline({
     scrollTrigger: {
       trigger: whyUsRef.value,
@@ -361,7 +458,7 @@ const initProfessionalAnimations = () => {
     duration: 0.8,
     ease: "power2.out"
   })
-  .to(featureRefs.value, {
+  .to(featureRefs.value.filter(Boolean), {
     opacity: 1,
     y: 0,
     duration: 0.6,
@@ -382,90 +479,6 @@ const initProfessionalAnimations = () => {
       toggleActions: "play none none reverse"
     }
   });
-
-  // Enhanced button hover effects
-  if (primaryCtaBtn.value) {
-    if (Array.isArray(primaryCtaBtn.value)) {
-      primaryCtaBtn.value.forEach(btn => {
-        if (btn && btn instanceof HTMLElement) {
-          btn.addEventListener('mouseenter', () => {
-            gsap.to(btn, {
-              scale: 1.05,
-              y: -2,
-              duration: 0.3,
-              ease: "power2.out"
-            });
-          });
-          btn.addEventListener('mouseleave', () => {
-            gsap.to(btn, {
-              scale: 1,
-              y: 0,
-              duration: 0.3,
-              ease: "power2.out"
-            });
-          });
-        }
-      });
-    } else if (primaryCtaBtn.value instanceof HTMLElement) {
-      primaryCtaBtn.value.addEventListener('mouseenter', () => {
-        gsap.to(primaryCtaBtn.value, {
-          scale: 1.05,
-          y: -2,
-          duration: 0.3,
-          ease: "power2.out"
-        });
-      });
-      primaryCtaBtn.value.addEventListener('mouseleave', () => {
-        gsap.to(primaryCtaBtn.value, {
-          scale: 1,
-          y: 0,
-          duration: 0.3,
-          ease: "power2.out"
-        });
-      });
-    }
-  }
-  if (secondaryCtaBtn.value) {
-    if (Array.isArray(secondaryCtaBtn.value)) {
-      secondaryCtaBtn.value.forEach(btn => {
-        if (btn && btn instanceof HTMLElement) {
-          btn.addEventListener('mouseenter', () => {
-            gsap.to(btn, {
-              scale: 1.05,
-              y: -2,
-              duration: 0.3,
-              ease: "power2.out"
-            });
-          });
-          btn.addEventListener('mouseleave', () => {
-            gsap.to(btn, {
-              scale: 1,
-              y: 0,
-              duration: 0.3,
-              ease: "power2.out"
-            });
-          });
-        }
-      });
-    } else if (secondaryCtaBtn.value instanceof HTMLElement) {
-      secondaryCtaBtn.value.addEventListener('mouseenter', () => {
-        gsap.to(secondaryCtaBtn.value, {
-          scale: 1.05,
-          y: -2,
-          duration: 0.3,
-          ease: "power2.out"
-        });
-      });
-      secondaryCtaBtn.value.addEventListener('mouseleave', () => {
-        gsap.to(secondaryCtaBtn.value, {
-          scale: 1,
-          y: 0,
-          duration: 0.3,
-          ease: "power2.out"
-        });
-      });
-    }
-  }
 };
 
 onMounted(() => {
@@ -482,19 +495,27 @@ onMounted(() => {
   min-height: 100vh;
 }
 
-/* Enhanced hover effects */
-.group:hover .relative::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
-  transition: left 0.6s;
+/* Professional hover effects */
+.group:hover .bg-gradient-to-br {
+  transform: scale(1.05);
 }
 
-.group:hover .relative::before {
-  left: 100%;
+/* Smooth transitions */
+.transition-all {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Enhanced card hover effects */
+.group:hover {
+  transform: translateY(-8px);
+}
+
+/* Professional shadows */
+.shadow-xl {
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.hover\:shadow-2xl:hover {
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
 }
 </style> 

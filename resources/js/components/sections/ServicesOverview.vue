@@ -69,16 +69,7 @@
               </li>
             </ul>
 
-            <!-- Service Link -->
-            <router-link 
-              :to="service.link"
-              class="inline-flex items-center text-blue-300 hover:text-white font-semibold transition-colors duration-300 group-hover:translate-x-1"
-            >
-              Learn More
-              <svg class="w-4 h-4 ml-2 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-              </svg>
-            </router-link>
+            
           </div>
         </div>
       </div>
@@ -171,7 +162,7 @@ const services = ref([
     title: 'Road Transport Solutions',
     description: 'Smooth and reliable ground transportation for domestic and cross-border shipments.',
     iconSvg: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM21 17a2 2 0 11-4 0 2 2 0 014 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 17h16v-6a4 4 0 014-4V6a1 1 0 00-1-1H4a1 1 0 00-1 1v11z"/>',
-    features: ['Domestic Trucking', 'Cross-Border Trucking', 'Less-than-Truckload (LTL)', 'Last-Mile Delivery'],
+    features: ['Domestic Trucking', 'Less-than-Truckload (LTL)', 'Last-Mile Delivery','24/7 Pickup & Delivery'],
     link: '/services/road-transport'
   },
   {

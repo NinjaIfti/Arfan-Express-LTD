@@ -1,9 +1,19 @@
 <template>
   <div ref="contactRef" class="contact-page">
     <!-- Professional Hero Section -->
-    <section ref="heroRef" class="py-24 bg-gradient-to-br from-primary-900 via-primary-800 to-primary-700 text-white overflow-hidden relative">
+    <section ref="heroRef" class="py-24 bg-gray-900 text-white overflow-hidden relative">
+      <!-- Background Image -->
+      <div class="absolute inset-0 z-0">
+        <img 
+          :src="logisticImage" 
+          alt="Contact Arfan Express" 
+          class="w-full h-full object-cover opacity-40"
+        />
+        <div class="absolute inset-0 bg-gradient-to-br from-primary-900/40 via-primary-800/40 to-primary-700/40"></div>
+      </div>
+      
       <!-- Background Pattern -->
-      <div class="absolute inset-0 opacity-10">
+      <div class="absolute inset-0 opacity-10 z-5">
         <div class="absolute top-20 left-10 w-32 h-32 border-2 border-white rounded-full"></div>
         <div class="absolute bottom-20 right-20 w-48 h-48 border border-white rounded-full"></div>
         <div class="absolute top-1/2 left-1/3 w-24 h-24 border-2 border-white rounded-full transform -translate-x-1/2 -translate-y-1/2"></div>
@@ -92,7 +102,7 @@
                 >
                   <div class="flex-shrink-0 w-12 h-12 text-white rounded-xl flex items-center justify-center mr-6 shadow-lg"
                        :class="`bg-gradient-to-r ${contact.gradient}`">
-                    <component :is="contact.icon" class="w-6 h-6" />
+                    <div v-html="contact.iconSvg"></div>
                     </div>
                     <div>
                     <p class="font-bold text-primary-800 text-lg">{{ contact.label }}</p>
@@ -111,7 +121,13 @@
               </div>
               
               <div class="relative z-10">
-                <div class="text-5xl mb-6">📊</div>
+                <div class="flex justify-center mb-6">
+                  <div class="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center">
+                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                    </svg>
+                  </div>
+                </div>
                 <h3 class="text-3xl font-bold mb-4">Need a Quick Quote?</h3>
                 <p class="text-xl font-light mb-8 max-w-md mx-auto">
                   Get an instant estimate for your global shipping requirements with our expert consultation
@@ -162,6 +178,9 @@ import { gsap } from 'gsap';
 import ContactForm from '../components/common/ContactForm.vue';
 import OfficeMap from '../components/common/OfficeMap.vue';
 
+// Import background image
+import logisticImage from '@/assets/images/logistic.jpg';
+
 // Template refs
 const contactRef = ref(null);
 const heroRef = ref(null);
@@ -190,83 +209,58 @@ const offices = ref([
   {
     id: 2,
     city: "Chittagong Office",
-    address: "Dr. Rahman Plaza, 1403, Shek Mujib Road, Agrabad, Chittagong CIA-4100",
+    address: "Faruk Chamber (10th Floor)1403, Shek Mujib Road, Agrabad, Chittagong CIA-4100",
     type: "Regional Office",
     gradient: "from-secondary-500 to-secondary-600"
   },
   {
     id: 3,
     city: "Khulna Office",
-    address: "Faruk Chamber (10th Floor), 15, KDA Avenue, Sheikhpapa, Khulna-9100",
+    address: "Dr. Rahman Plaza, 1403, 15, KDA Avenue, Sheikhpapa, Khulna-9100",
     type: "Branch Office",
     gradient: "from-blue-500 to-blue-600"
   }
 ]);
 
-// Real contact details from brochure
+
 const contactDetails = ref([
   {
     id: 1,
     label: "Phone Numbers",
-    value: "+880 171 1560 113<br>+880 171 1560 112<br>+88 02 48812901-2",
-    icon: "PhoneIcon",
+    value: "+880 1722-339542<br>+880 1644-17846",
+    iconSvg: `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24" class="w-6 h-6">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+    </svg>`,
     gradient: "from-green-500 to-green-600"
   },
   {
     id: 2,
     label: "Email Address",
-    value: "info@arfanexpressbd.com",
-    icon: "EmailIcon",
+    value: "motiur@arfanexpressbd.com & kibria@arfanexpressbd.com",
+    iconSvg: `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24" class="w-6 h-6">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+    </svg>`,
     gradient: "from-blue-500 to-blue-600"
   },
   {
     id: 3,
     label: "Business Registration",
     value: "AIN NO: 101080094",
-    icon: "DocumentIcon",
+    iconSvg: `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24" class="w-6 h-6">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+    </svg>`,
     gradient: "from-purple-500 to-purple-600"
   },
   {
     id: 4,
     label: "Business Hours",
     value: "Sunday - Thursday: 9:00 AM - 6:00 PM<br>Saturday: 9:00 AM - 2:00 PM<br>Friday: Closed",
-    icon: "ClockIcon",
+    iconSvg: `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24" class="w-6 h-6">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+    </svg>`,
     gradient: "from-orange-500 to-orange-600"
   }
 ]);
-
-// Icon components
-const PhoneIcon = {
-  template: `
-    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" class="w-6 h-6">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
-    </svg>
-  `
-};
-
-const EmailIcon = {
-  template: `
-    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" class="w-6 h-6">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-    </svg>
-  `
-};
-
-const DocumentIcon = {
-  template: `
-    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" class="w-6 h-6">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
-    </svg>
-  `
-};
-
-const ClockIcon = {
-  template: `
-    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" class="w-6 h-6">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
-    </svg>
-  `
-};
 
 const mapLocations = [
   {

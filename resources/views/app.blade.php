@@ -17,19 +17,23 @@
     <meta property="og:description" content="Professional freight forwarding and logistics services worldwide. Ocean, air, and road transport solutions.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ url('/') }}">
-    <meta property="og:image" content="{{ asset('images/og-image.jpg') }}">
+    <meta property="og:image" content="{{ asset('images/logo.jpg') }}">
     
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Arfan Express LTD - Global Logistics Solutions">
     <meta name="twitter:description" content="Professional freight forwarding and logistics services worldwide.">
-    <meta name="twitter:image" content="{{ asset('images/twitter-card.jpg') }}">
+    <meta name="twitter:image" content="{{ asset('images/logo.jpg') }}">
     
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicon-32x32.png') }}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('favicon-16x16.png') }}">
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('apple-touch-icon.png') }}">
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="{{ asset('images/hero.jpg') }}" as="image" importance="high">
+    <link rel="preload" href="{{ asset('images/logo.jpg') }}" as="image" importance="high">
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -70,22 +74,24 @@
                 </p>
                 <div class="bg-white rounded-lg p-6 shadow-lg">
                     <h2 class="text-xl font-semibold text-primary mb-3">Contact Arfan Express</h2>
-                    <p class="text-neutral-600 mb-2">📧 Email: info@arfanexpress.com</p>
-                    <p class="text-neutral-600 mb-2">📞 Phone: +1 (555) 123-4567</p>
-                    <p class="text-neutral-600">💬 WhatsApp: +1 (555) 123-4567</p>
+                    <p class="text-neutral-600 mb-2">📧 Email: motiur@arfanexpressbd.com</p>
+                    <p class="text-neutral-600 mb-2">📞 Phone: Contact us via email</p>
+                    <p class="text-neutral-600">🌐 Visit our website for more details</p>
                 </div>
             </div>
         </div>
     </noscript>
 
-    <!-- Google Analytics (replace with your tracking ID) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_TRACKING_ID"></script>
+    <!-- Google Analytics -->
+    @if(config('app.env') === 'production' && !empty(env('GOOGLE_ANALYTICS_ID')))
+    <script async src="https://www.googletagmanager.com/gtag/js?id={{ env('GOOGLE_ANALYTICS_ID') }}"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
-        gtag('config', 'GA_TRACKING_ID');
+        gtag('config', '{{ env('GOOGLE_ANALYTICS_ID') }}');
     </script>
+    @endif
 
     <!-- Schema.org Structured Data -->
     <script type="application/ld+json">
@@ -95,26 +101,13 @@
         "name": "Arfan Express LTD",
         "description": "Global logistics and freight forwarding services",
         "url": "{{ url('/') }}",
-        "logo": "{{ asset('images/logo.png') }}",
+        "logo": "{{ asset('images/logo.jpg') }}",
         "contactPoint": {
             "@type": "ContactPoint",
-            "telephone": "+1-555-123-4567",
+            "email": "motiur@arfanexpressbd.com",
             "contactType": "customer service",
             "availableLanguage": ["English"]
         },
-        "address": {
-            "@type": "PostalAddress",
-            "streetAddress": "123 Business Plaza, Suite 450",
-            "addressLocality": "New York",
-            "addressRegion": "NY",
-            "postalCode": "10001",
-            "addressCountry": "US"
-        },
-        "sameAs": [
-            "https://www.linkedin.com/company/arfan-express",
-            "https://twitter.com/arfanexpress",
-            "https://www.facebook.com/arfanexpress"
-        ],
         "service": [
             {
                 "@type": "Service",
@@ -130,6 +123,11 @@
                 "@type": "Service",
                 "name": "Road Transport", 
                 "description": "Ground transportation and last-mile delivery"
+            },
+            {
+                "@type": "Service",
+                "name": "Customs Brokerage", 
+                "description": "Professional customs clearance and documentation services"
             }
         ]
     }

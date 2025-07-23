@@ -45,19 +45,7 @@
       <!-- Professional Floating Action Buttons -->
       <FloatingActionButtons />
       
-      <!-- Scroll to Top Button -->
-      <transition name="fade">
-        <button
-          v-if="showScrollTop"
-          @click="scrollToTop"
-          class="fixed bottom-8 right-8 z-40 w-12 h-12 bg-gradient-to-r from-secondary-500 to-secondary-600 hover:from-secondary-400 hover:to-secondary-500 text-white rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-110 flex items-center justify-center"
-          aria-label="Scroll to top"
-        >
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"/>
-          </svg>
-        </button>
-      </transition>
+     
     </div>
 
     <!-- Global Background Pattern -->
@@ -87,12 +75,12 @@ const isLoading = ref(true);
 const showScrollTop = ref(false);
 const transitionName = ref('slide-fade');
 
-// Loading simulation
+// Optimized loading
 onMounted(() => {
-  // Simulate loading time for professional effect
+  // Faster loading time for better UX
   setTimeout(() => {
     isLoading.value = false;
-  }, 2000);
+  }, 800);
 
   // Scroll listener for scroll-to-top button
   window.addEventListener('scroll', handleScroll);
@@ -137,41 +125,41 @@ const scrollToTop = () => {
 };
 
 const initGlobalAnimations = () => {
-  // Add subtle animations to background elements
+  // Optimized subtle animations to background elements
   gsap.to('.fixed .bg-primary-300', {
     rotation: 360,
-    duration: 20,
+    duration: 30,
     repeat: -1,
     ease: "none"
   });
   
   gsap.to('.fixed .bg-secondary-300', {
     rotation: -360,
-    duration: 25,
+    duration: 35,
     repeat: -1,
     ease: "none"
   });
   
   gsap.to('.fixed .bg-primary-400', {
-    scale: 1.2,
-    duration: 4,
+    scale: 1.1,
+    duration: 6,
     repeat: -1,
     yoyo: true,
     ease: "power2.inOut"
   });
 };
 
-// Page transition hooks
+// Optimized page transition hooks
 const onBeforeEnter = (el) => {
-  gsap.set(el, { opacity: 0, y: 50 });
+  gsap.set(el, { opacity: 0, y: 30 });
 };
 
 const onEnter = (el, done) => {
   gsap.to(el, {
     opacity: 1,
     y: 0,
-    duration: 0.8,
-    ease: "power3.out",
+    duration: 0.4,
+    ease: "power2.out",
     onComplete: done
   });
 };
@@ -179,8 +167,8 @@ const onEnter = (el, done) => {
 const onLeave = (el, done) => {
   gsap.to(el, {
     opacity: 0,
-    y: -50,
-    duration: 0.5,
+    y: -20,
+    duration: 0.3,
     ease: "power2.in",
     onComplete: done
   });

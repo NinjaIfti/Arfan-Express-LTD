@@ -28,7 +28,7 @@
               <span class="font-semibold text-[#1a4a7a]">Arfan Express Ltd.</span> is a leading freight 
               forwarding company dedicated to delivering reliable and cost-efficient 
               logistics services worldwide. With over 
-              <span class="font-semibold text-[#2a5a8a]">15 years</span> of 
+              <span class="font-semibold text-[#2a5a8a]">30 years</span> of 
               experience, we specialize in sea, air, and road freight, providing end-to-end 
               solutions to streamline your supply chain.
             </p>
@@ -48,7 +48,7 @@
               Our Vision
             </h3>
             <p class="text-gray-700 leading-relaxed">
-              To be the global leader in freight forwarding, delivering innovative 
+              To be the global leader in freight forwarding industry, delivering innovative 
               logistics solutions that empower businesses to succeed.
             </p>
           </div>

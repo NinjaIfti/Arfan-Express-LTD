@@ -98,37 +98,7 @@
       </div>
     </div>
 
-    <!-- Professional Quote Button -->
-    <div class="group relative">
-      <router-link 
-        to="/contact"
-        class="group/btn relative bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-400 hover:to-orange-500 text-white p-4 rounded-2xl shadow-2xl hover:shadow-orange-500/25 transition-all duration-500 transform hover:scale-110 hover:-translate-y-1 flex items-center justify-center overflow-hidden"
-        title="Get a free quote"
-        @mouseenter="onButtonHover"
-        @mouseleave="onButtonLeave"
-      >
-        <!-- Button background animation -->
-        <div class="absolute inset-0 bg-gradient-to-r from-white/10 to-transparent opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300"></div>
-        
-        <!-- Quote Icon -->
-        <svg class="w-7 h-7 relative z-10 transition-transform duration-300 group-hover/btn:rotate-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
-        </svg>
-
-        <!-- Pulse animation -->
-        <div class="absolute inset-0 bg-orange-400 rounded-2xl animate-ping opacity-20 animation-delay-3000"></div>
-      </router-link>
-      
-      <!-- Professional Tooltip -->
-      <div class="group-hover:opacity-100 group-hover:visible opacity-0 invisible absolute right-full mr-4 top-1/2 transform -translate-y-1/2 transition-all duration-300">
-        <div class="bg-gray-900 text-white text-sm px-4 py-3 rounded-xl shadow-xl whitespace-nowrap relative">
-          <div class="font-semibold">Free Quote</div>
-          <div class="text-xs text-gray-300">Get instant pricing</div>
-          <!-- Arrow -->
-          <div class="absolute left-full top-1/2 transform -translate-y-1/2 border-l-8 border-l-gray-900 border-t-4 border-t-transparent border-b-4 border-b-transparent"></div>
-        </div>
-      </div>
-    </div>
+   
   </div>
 </template>
 

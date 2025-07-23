@@ -1,5 +1,34 @@
 @import "tailwindcss";
 
+/* Performance optimizations */
+* {
+  box-sizing: border-box;
+}
+
+/* Hardware acceleration for smooth animations */
+.transform,
+.transition-transform,
+.group:hover {
+  will-change: transform;
+}
+
+.transition-opacity {
+  will-change: opacity;
+}
+
+/* Optimize font loading */
+@font-face {
+  font-family: 'Inter';
+  font-display: swap;
+  src: local('Inter');
+}
+
+@font-face {
+  font-family: 'Poppins';
+  font-display: swap;
+  src: local('Poppins');
+}
+
 @theme {
   /* Ocean Blue Primary Colors */
   --color-primary-50: #eff6ff;

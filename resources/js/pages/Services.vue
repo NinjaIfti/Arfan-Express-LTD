@@ -1,8 +1,18 @@
 <template>
   <div class="services-page">
     <!-- Hero Section -->
-    <section class="py-20 bg-gradient-to-r from-primary to-blue-600 text-white">
-      <div class="container mx-auto px-6">
+    <section class="py-20 bg-gray-900 text-white relative overflow-hidden">
+      <!-- Background Image -->
+      <div class="absolute inset-0 z-0">
+        <img 
+          :src="serviceImage" 
+          alt="Our Services" 
+          class="w-full h-full object-cover opacity-40"
+        />
+        <div class="absolute inset-0 bg-gradient-to-r from-primary-900/40 to-blue-900/40"></div>
+      </div>
+      
+      <div class="container mx-auto px-6 relative z-10">
         <div class="text-center">
           <h1 class="text-5xl md:text-6xl font-bold mb-6" data-aos="fade-up">
             Our <span class="text-secondary">Services</span>
@@ -89,6 +99,7 @@
 
 <script setup>
 import { ref } from 'vue';
+import ServiceIcon from '../components/common/ServiceCard.vue';
 import OceanFreightService from '../components/services/OceanFreightService.vue';
 import ValueAddedLogisticsService from '../components/services/ValueAddedLogisticsService.vue';
 import CustomsBrokerageService from '../components/services/CustomsBrokerageService.vue';
@@ -97,6 +108,9 @@ import AirFreightService from '../components/services/AirFreightService.vue';
 import SupplyChainService from '../components/services/SupplyChainService.vue';
 import DeliveryTermsService from '../components/services/DeliveryTermsService.vue';
 import { gsap } from 'gsap';
+
+// Import background image
+import serviceImage from '@/assets/images/service.jpg';
 
 const features = ref([
   {

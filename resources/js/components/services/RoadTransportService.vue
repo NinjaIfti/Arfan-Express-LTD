@@ -64,7 +64,7 @@ import { ref } from 'vue';
 
 const services = ref([
   'Domestic Trucking',
-  'Cross-Border Trucking',
+  '24/7 Pickup & Delivery',
   'Less-than-Truckload (LTL)',
   'Last-Mile Delivery'
 ]);

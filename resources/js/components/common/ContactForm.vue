@@ -143,7 +143,7 @@ const schema = yup.object({
 });
 
 // Form handling
-const { defineField, handleSubmit, errors, isSubmitting } = useForm({
+const { defineField, handleSubmit, errors, isSubmitting, resetForm } = useForm({
   validationSchema: schema,
 });
 
@@ -156,20 +156,40 @@ const [message, messageError] = defineField('message');
 
 const onSubmit = handleSubmit(async (values) => {
   try {
-    // Here you would typically send the form data to your backend
-    console.log('Form submitted:', values);
+    // Get CSRF token from meta tag
+    const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content');
     
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    
-    // Show success message (you could use a toast notification)
-    alert('Message sent successfully! We will get back to you soon.');
-    
-    // Reset form
-    // resetForm();
+    // Submit form data to Laravel API
+    const response = await fetch('/api/contact', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'X-CSRF-TOKEN': csrfToken || '',
+      },
+      body: JSON.stringify(values)
+    });
+
+    const result = await response.json();
+
+    if (response.ok && result.success) {
+      // Show success message
+      alert('✅ ' + result.message);
+      
+      // Reset form on success
+      resetForm();
+    } else {
+      // Handle validation errors
+      if (result.errors) {
+        console.error('Validation errors:', result.errors);
+        alert('❌ Please fix the following errors:\n' + Object.values(result.errors).flat().join('\n'));
+      } else {
+        alert('❌ ' + (result.message || 'There was an error sending your message. Please try again.'));
+      }
+    }
   } catch (error) {
     console.error('Error submitting form:', error);
-    alert('There was an error sending your message. Please try again.');
+    alert('❌ Network error. Please check your connection and try again.');
   }
 });
 </script> 

@@ -8,15 +8,13 @@
           to="/" 
           class="flex items-center space-x-4 group"
         >
-          <!-- Enhanced logo icon -->
+          <!-- Company Logo Image -->
           <div class="relative">
-            <div class="w-12 h-12 bg-gradient-to-br from-primary-600 to-secondary-600 rounded-xl shadow-xl flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 relative overflow-hidden">
-              <!-- Background pattern -->
-              <div class="absolute inset-0 bg-gradient-to-tr from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              
-              <!-- Company initials -->
-              <span class="text-white font-bold text-lg relative z-10">AE</span>
-            </div>
+            <img 
+              :src="logoImage" 
+              alt="Arfan Express Limited Logo" 
+              class="w-12 h-12 object-contain rounded-xl shadow-xl group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 bg-white p-1"
+            />
             <!-- Floating indicator -->
             <div class="absolute -top-1 -right-1 w-4 h-4 bg-secondary-400 rounded-full border-2 border-white shadow-lg animate-pulse"></div>
           </div>
@@ -145,6 +143,7 @@
 import { ref, computed, onMounted, onUnmounted, nextTick } from 'vue';
 import { useRoute } from 'vue-router';
 import { gsap } from 'gsap';
+import logoImage from '@/assets/images/logo.jpg';
 
 const route = useRoute();
 const isScrolled = ref(false);

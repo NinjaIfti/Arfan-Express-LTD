@@ -18,12 +18,11 @@
     <!-- Deep Blue Brochure Gradient Overlay -->
     <div class="absolute inset-0 z-10">
       <div class="w-full h-full bg-gradient-to-br from-[#1a4a7a]/85 via-[#2a5a8a]/70 to-white/30">
-        <!-- Animated ocean waves with brochure theme -->
+        <!-- Reduced animated elements for better performance -->
         <div class="absolute inset-0 opacity-10">
           <div 
-            v-for="i in 15" 
+            v-for="i in 6" 
             :key="`wave-${i}`"
-            ref="containerRefs"
             class="absolute w-8 h-4 bg-white/20 rounded-sm wave-animation"
             :style="getContainerStyle(i)"
           ></div>
@@ -33,17 +32,15 @@
       </div>
     </div>
     
-    <!-- Premium Ocean Elements -->
+    <!-- Simplified Premium Ocean Elements -->
     <div class="absolute inset-0 z-20">
-      <!-- Subtle premium waves with brochure colors -->
+      <!-- Optimized wave layers -->
       <div class="absolute bottom-0 left-0 w-full h-20 bg-gradient-to-t from-[#1a4a7a]/15 to-transparent wave-layer-1"></div>
       <div class="absolute bottom-0 left-0 w-full h-16 bg-gradient-to-t from-[#2a5a8a]/10 to-transparent wave-layer-2"></div>
-      <div class="absolute bottom-0 left-0 w-full h-12 bg-gradient-to-t from-[#3a6a9a]/8 to-transparent wave-layer-3"></div>
       
-      <!-- Premium floating elements with brochure theme -->
+      <!-- Reduced floating elements -->
       <div class="absolute top-1/4 left-1/4 w-2 h-2 bg-white/30 rounded-full premium-float"></div>
       <div class="absolute top-1/3 right-1/3 w-1 h-1 bg-white/25 rounded-full premium-float" style="animation-delay: 2s;"></div>
-      <div class="absolute top-2/3 left-1/3 w-1.5 h-1.5 bg-white/20 rounded-full premium-float" style="animation-delay: 4s;"></div>
     </div>
 
     <!-- Professional Content -->
@@ -62,10 +59,10 @@
         <div ref="underline" class="w-32 h-1.5 bg-gradient-to-r from-secondary-400 to-secondary-500 mx-auto rounded-full shadow-lg"></div>
       </div>
 
-      <!-- Professional Tagline with Typewriter Effect -->
+      <!-- Optimized Professional Tagline with Typewriter Effect -->
       <div ref="taglineRef" class="mb-12">
         <h2 class="text-2xl md:text-4xl font-inter mb-6 text-white font-light">
-          <span ref="typewriterText">{{ safeTagline }}</span>
+          <span ref="typewriterText">{{ currentTagline }}</span>
           <span ref="cursor" class="animate-pulse text-blue-300 font-normal">|</span>
         </h2>
         <p ref="description" class="text-xl md:text-2xl text-gray-200/90 leading-relaxed max-w-4xl mx-auto font-light">
@@ -129,7 +126,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted, nextTick, computed } from 'vue';
+import { ref, onMounted, onUnmounted, nextTick } from 'vue';
 import { gsap } from 'gsap';
 
 // Template refs
@@ -154,8 +151,6 @@ const stat4 = ref(null);
 const counter1 = ref(null);
 const counter2 = ref(null);
 const counter3 = ref(null);
-const scrollIndicator = ref(null);
-const containerRefs = ref([]);
 
 // Hero slideshow state
 const currentSlide = ref(0);
@@ -165,7 +160,7 @@ const heroImages = ref([
 ]);
 let slideInterval = null;
 
-// Professional taglines from brochure data
+// Optimized taglines
 const taglines = [
   "Connecting Global Destinations",
   "Your Trusted Logistics Partner", 
@@ -175,45 +170,55 @@ const taglines = [
 ];
 
 const currentTagline = ref(taglines[0]);
-let currentIndex = 0;
-let typeInterval = null;
-let switchInterval = null;
+let currentTaglineIndex = 0;
+let typewriterRAF = null;
+let switchTimeout = null;
 let masterTimeline = null;
 
-// Ensure text is always readable
-const safeTagline = computed(() => {
-  return currentTagline.value || taglines[0];
-});
-
-const typeWriter = (text, callback) => {
-  let i = 0;
-  currentTagline.value = '';
+// Optimized typewriter effect using requestAnimationFrame
+const optimizedTypeWriter = (text, onComplete) => {
+  let charIndex = 0;
+  let currentText = '';
   
-  const typing = () => {
-    if (i < text.length) {
-      currentTagline.value += text.charAt(i);
-      i++;
-      setTimeout(typing, 80);
-    } else if (callback) {
-      setTimeout(callback, 2000);
+  const type = () => {
+    if (charIndex < text.length) {
+      currentText += text.charAt(charIndex);
+      currentTagline.value = currentText;
+      charIndex++;
+      // Use requestAnimationFrame for smooth animation
+      typewriterRAF = requestAnimationFrame(() => {
+        setTimeout(type, 60); // Faster typing speed
+      });
+    } else {
+      // Animation complete
+      if (onComplete) {
+        switchTimeout = setTimeout(onComplete, 2500); // Shorter pause
+      }
     }
   };
   
-  setTimeout(typing, 200);
+  // Reset and start typing
+  currentText = '';
+  currentTagline.value = '';
+  charIndex = 0;
+  
+  // Start after a brief delay
+  switchTimeout = setTimeout(type, 300);
 };
 
 const switchTagline = () => {
-  if (currentIndex < taglines.length) {
-    typeWriter(taglines[currentIndex], () => {
-      currentIndex = (currentIndex + 1) % taglines.length;
-    });
-  }
+  const nextText = taglines[currentTaglineIndex];
+  optimizedTypeWriter(nextText, () => {
+    currentTaglineIndex = (currentTaglineIndex + 1) % taglines.length;
+    // Schedule next switch
+    switchTimeout = setTimeout(switchTagline, 1000);
+  });
 };
 
 const startSlideshow = () => {
   slideInterval = setInterval(() => {
     currentSlide.value = (currentSlide.value + 1) % heroImages.value.length;
-  }, 5000); // Change slide every 5 seconds
+  }, 6000); // Slower slide transition
 };
 
 const stopSlideshow = () => {
@@ -224,269 +229,213 @@ const stopSlideshow = () => {
 };
 
 const animateCounters = () => {
-  // Counter animations
+  // Optimized counter animations
   gsap.to(counter1.value, {
     innerHTML: 15,
-    duration: 2,
+    duration: 1.5,
     ease: "power2.out",
     snap: { innerHTML: 1 }
   });
   
   gsap.to(counter2.value, {
     innerHTML: 100,
-    duration: 2.5,
+    duration: 1.8,
     ease: "power2.out", 
     snap: { innerHTML: 1 }
   });
   
   gsap.to(counter3.value, {
     innerHTML: 50000,
-    duration: 3,
+    duration: 2,
     ease: "power2.out",
     snap: { innerHTML: 1000 }
   });
 };
 
-const initProfessionalAnimations = () => {
-  // Create master timeline
+const initOptimizedAnimations = () => {
+  // Create simplified master timeline
   masterTimeline = gsap.timeline();
   
-  // Set initial states
-  gsap.set([companyName.value, companyType.value], { opacity: 0, y: 100, scale: 0.8 });
+  // Set initial states - batch for better performance
+  gsap.set([companyName.value, companyType.value], { opacity: 0, y: 60 });
   gsap.set(underline.value, { scaleX: 0 });
-  gsap.set([typewriterText.value, description.value], { opacity: 0, y: 50 });
-  gsap.set([primaryBtn.value, secondaryBtn.value], { opacity: 0, y: 80, scale: 0.8 });
-  gsap.set([stat1.value, stat2.value, stat3.value, stat4.value], { opacity: 0, y: 60 });
-  gsap.set(scrollIndicator.value, { opacity: 0, y: 30 });
+  gsap.set([typewriterText.value, description.value], { opacity: 0, y: 30 });
+  gsap.set([primaryBtn.value, secondaryBtn.value], { opacity: 0, y: 50 });
+  gsap.set([stat1.value, stat2.value, stat3.value, stat4.value], { opacity: 0, y: 40 });
   
-  // Animate company name with dramatic effect
+  // Optimized animation sequence - faster and smoother
   masterTimeline
     .to(companyName.value, {
       opacity: 1,
       y: 0,
-      scale: 1,
-      duration: 1.2,
-      ease: "back.out(1.7)"
+      duration: 0.8,
+      ease: "power2.out"
     })
     .to(companyType.value, {
       opacity: 1,
       y: 0,
-      scale: 1,
-      duration: 0.8,
-      ease: "back.out(1.4)"
-    }, "-=0.6")
+      duration: 0.6,
+      ease: "power2.out"
+    }, "-=0.4")
     .to(underline.value, {
       scaleX: 1,
-      duration: 0.8,
+      duration: 0.6,
       ease: "power2.out"
-    }, "-=0.3")
+    }, "-=0.2")
     .to(typewriterText.value, {
       opacity: 1,
       y: 0,
-      duration: 0.6,
+      duration: 0.5,
       ease: "power2.out"
-    }, "+=0.3")
+    }, "+=0.2")
     .to(description.value, {
       opacity: 1,
       y: 0,
-      duration: 0.8,
+      duration: 0.6,
       ease: "power2.out"
     }, "-=0.2")
     .to([primaryBtn.value, secondaryBtn.value], {
       opacity: 1,
       y: 0,
-      scale: 1,
-      duration: 0.8,
-      stagger: 0.2,
-      ease: "back.out(1.4)"
+      duration: 0.6,
+      stagger: 0.15,
+      ease: "power2.out"
     }, "-=0.2")
     .to([stat1.value, stat2.value, stat3.value, stat4.value], {
       opacity: 1,
       y: 0,
-      duration: 0.6,
-      stagger: 0.1,
+      duration: 0.5,
+      stagger: 0.08,
       ease: "power2.out",
       onComplete: animateCounters
-    }, "-=0.3")
-    .to(scrollIndicator.value, {
-      opacity: 1,
-      y: 0,
-      duration: 0.5,
-      ease: "power2.out"
     }, "-=0.2");
-
-  // Ocean wave animations are handled by CSS
-
-  // Advanced hover effects for buttons
-  if (primaryBtn.value) {
-    if (Array.isArray(primaryBtn.value)) {
-      primaryBtn.value.forEach(btn => {
-        if (btn && btn instanceof HTMLElement) {
-          btn.addEventListener('mouseenter', () => {
-            gsap.to(btn, {
-              scale: 1.05,
-              y: -2,
-              duration: 0.3,
-              ease: "power2.out"
-            });
-          });
-          btn.addEventListener('mouseleave', () => {
-            gsap.to(btn, {
-              scale: 1,
-              y: 0,
-              duration: 0.3,
-              ease: "power2.out"
-            });
-          });
-        }
-      });
-    } else if (primaryBtn.value instanceof HTMLElement) {
-      primaryBtn.value.addEventListener('mouseenter', () => {
-        gsap.to(primaryBtn.value, {
-          scale: 1.05,
-          y: -2,
-          duration: 0.3,
-          ease: "power2.out"
-        });
-      });
-      primaryBtn.value.addEventListener('mouseleave', () => {
-        gsap.to(primaryBtn.value, {
-          scale: 1,
-          y: 0,
-          duration: 0.3,
-          ease: "power2.out"
-        });
-      });
-    }
-  }
-
-  if (secondaryBtn.value) {
-    if (Array.isArray(secondaryBtn.value)) {
-      secondaryBtn.value.forEach(btn => {
-        if (btn && btn instanceof HTMLElement) {
-          btn.addEventListener('mouseenter', () => {
-            gsap.to(btn, {
-              scale: 1.05,
-              y: -2,
-              duration: 0.3,
-              ease: "power2.out"
-            });
-          });
-          btn.addEventListener('mouseleave', () => {
-            gsap.to(btn, {
-              scale: 1,
-              y: 0,
-              duration: 0.3,
-              ease: "power2.out"
-            });
-          });
-        }
-      });
-    } else if (secondaryBtn.value instanceof HTMLElement) {
-      secondaryBtn.value.addEventListener('mouseenter', () => {
-        gsap.to(secondaryBtn.value, {
-          scale: 1.05,
-          y: -2,
-          duration: 0.3,
-          ease: "power2.out"
-        });
-      });
-      secondaryBtn.value.addEventListener('mouseleave', () => {
-        gsap.to(secondaryBtn.value, {
-          scale: 1,
-          y: 0,
-          duration: 0.3,
-          ease: "power2.out"
-        });
-      });
-    }
-  }
 };
 
 const getContainerStyle = (index) => {
   return {
-    top: `${Math.random() * 100}%`,
-    left: `${Math.random() * 100}%`,
-    transform: `rotate(${Math.random() * 45}deg)`,
+    top: `${20 + (index * 15)}%`,
+    left: `${10 + (index * 15)}%`,
+    transform: `rotate(${15 + index * 15}deg)`,
   };
+};
+
+// Cleanup function
+const cleanup = () => {
+  if (typewriterRAF) {
+    cancelAnimationFrame(typewriterRAF);
+    typewriterRAF = null;
+  }
+  if (switchTimeout) {
+    clearTimeout(switchTimeout);
+    switchTimeout = null;
+  }
+  if (masterTimeline) {
+    masterTimeline.kill();
+    masterTimeline = null;
+  }
+  stopSlideshow();
 };
 
 onMounted(() => {
   nextTick(() => {
-    // Set initial tagline
-    currentTagline.value = taglines[0];
-    
-    // Start slideshow
+    // Start slideshow immediately
     startSlideshow();
     
-    // Start typewriter effect with a delay
+    // Start optimized animations after a shorter delay
+    setTimeout(() => {
+      initOptimizedAnimations();
+    }, 200);
+    
+    // Start typewriter effect after animations begin
     setTimeout(() => {
       switchTagline();
-      switchInterval = setInterval(switchTagline, 5000);
-    }, 2000);
-    
-    // Start professional animations
-    setTimeout(() => {
-      initProfessionalAnimations();
-    }, 1000);
+    }, 1200);
   });
 });
 
 onUnmounted(() => {
-  if (switchInterval) {
-    clearInterval(switchInterval);
-  }
-  if (masterTimeline) {
-    masterTimeline.kill();
-  }
-  // Stop slideshow
-  stopSlideshow();
+  cleanup();
 });
 </script>
 
 <style scoped>
-/* Hero Slideshow */
+/* Hero Slideshow - Optimized */
 .hero-slide {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  will-change: opacity;
 }
 
-/* Remove old hero background image class */
-.hero-background-image {
-  background-image: url('/images/hero.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+/* Optimized animations with hardware acceleration */
+.wave-animation {
+  animation: float 6s ease-in-out infinite;
+  will-change: transform;
 }
 
-/* Professional custom animations */
+.premium-float {
+  animation: drift 8s ease-in-out infinite;
+  will-change: transform;
+}
+
+.wave-layer-1 {
+  animation: wave 3s ease-in-out infinite;
+  will-change: transform;
+}
+
+.wave-layer-2 {
+  animation: wave 4s ease-in-out infinite reverse;
+  will-change: transform;
+}
+
+/* Optimized keyframes */
 @keyframes float {
   0%, 100% { transform: translateY(0px) rotate(0deg); }
-  33% { transform: translateY(-20px) rotate(120deg); }
-  66% { transform: translateY(-10px) rotate(240deg); }
+  50% { transform: translateY(-15px) rotate(180deg); }
 }
 
 @keyframes drift {
   0%, 100% { transform: translateX(0px) translateY(0px) scale(1); }
-  25% { transform: translateX(20px) translateY(-15px) scale(1.1); }
-  50% { transform: translateX(-15px) translateY(10px) scale(0.9); }
-  75% { transform: translateX(18px) translateY(-8px) scale(1.05); }
+  50% { transform: translateX(15px) translateY(-10px) scale(1.1); }
 }
 
-/* Enhance button hover effects */
-.group:hover .relative::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-  transition: left 0.5s;
+@keyframes wave {
+  0%, 100% { transform: translateX(0px); }
+  50% { transform: translateX(10px); }
 }
 
-.group:hover .relative::before {
-  left: 100%;
+/* Performance optimizations */
+.maritime-button {
+  background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+  will-change: transform;
+}
+
+.premium-glow {
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+}
+
+/* Reduced motion for better performance */
+@media (prefers-reduced-motion: reduce) {
+  .wave-animation,
+  .premium-float,
+  .wave-layer-1,
+  .wave-layer-2 {
+    animation: none;
+  }
+  
+  .animate-pulse {
+    animation: none;
+}
+}
+
+/* Hardware acceleration for smooth animations */
+.group:hover {
+  transform: translateY(-2px);
+  will-change: transform;
+}
+
+.transition-all {
+  transition: all 0.3s ease;
+  will-change: transform, opacity;
 }
 </style> 

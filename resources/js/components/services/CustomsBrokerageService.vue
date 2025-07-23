@@ -76,7 +76,7 @@ const services = ref([
   height: 24rem;
   border-radius: 1rem;
   box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-  background-image: url('/images/pexels-pixabay-262353.jpg');
+  background-image: url('/images/ariel.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
