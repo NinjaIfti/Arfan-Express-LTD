@@ -77,10 +77,10 @@ const transitionName = ref('slide-fade');
 
 // Optimized loading
 onMounted(() => {
-  // Faster loading time for better UX
+  // Show loading screen for 2 seconds so users can see the animation
   setTimeout(() => {
     isLoading.value = false;
-  }, 800);
+  }, 2000);
 
   // Scroll listener for scroll-to-top button
   window.addEventListener('scroll', handleScroll);

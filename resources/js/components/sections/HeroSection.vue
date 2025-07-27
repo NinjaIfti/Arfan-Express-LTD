@@ -1,153 +1,123 @@
 <template>
   <section 
     ref="heroRef" 
-    class="relative h-screen flex items-center justify-center overflow-hidden brochure-hero-bg"
-  
+    class="relative min-h-screen sm:h-screen flex items-center justify-center overflow-hidden brochure-hero-bg"
   >
-    <!-- Hero Image Slideshow Background -->
+    <!-- Hero Image Slideshow Background with Lazy Loading -->
     <div class="absolute inset-0 z-0">
       <div 
         v-for="(image, index) in heroImages" 
         :key="index"
         class="absolute inset-0 hero-slide transition-opacity duration-1000"
         :class="{ 'opacity-100': currentSlide === index, 'opacity-0': currentSlide !== index }"
-        :style="{ backgroundImage: `url(${image})` }"
-      ></div>
-    </div>
-    
-    <!-- Deep Blue Brochure Gradient Overlay -->
-    <div class="absolute inset-0 z-10">
-      <div class="w-full h-full bg-gradient-to-br from-[#1a4a7a]/85 via-[#2a5a8a]/70 to-white/30">
-        <!-- Reduced animated elements for better performance -->
-        <div class="absolute inset-0 opacity-10">
-          <div 
-            v-for="i in 6" 
-            :key="`wave-${i}`"
-            class="absolute w-8 h-4 bg-white/20 rounded-sm wave-animation"
-            :style="getContainerStyle(i)"
-          ></div>
-        </div>
-        <!-- Additional deep blue gradient overlay for brochure effect -->
-        <div class="absolute inset-0 bg-gradient-to-br from-[#1a4a7a]/60 via-[#2a5a8a]/40 to-transparent"></div>
+      >
+        <img 
+          :src="index === 0 ? image : ''"
+          :data-src="index > 0 ? image : ''"
+          :alt="`Hero background ${index + 1}`"
+          class="w-full h-full object-cover lazy-image"
+          :class="{ 'lazy': index > 0 }"
+          loading="eager"
+          decoding="async"
+        />
       </div>
     </div>
     
-    <!-- Simplified Premium Ocean Elements -->
-    <div class="absolute inset-0 z-20">
-      <!-- Optimized wave layers -->
-      <div class="absolute bottom-0 left-0 w-full h-20 bg-gradient-to-t from-[#1a4a7a]/15 to-transparent wave-layer-1"></div>
-      <div class="absolute bottom-0 left-0 w-full h-16 bg-gradient-to-t from-[#2a5a8a]/10 to-transparent wave-layer-2"></div>
-      
-      <!-- Reduced floating elements -->
-      <div class="absolute top-1/4 left-1/4 w-2 h-2 bg-white/30 rounded-full premium-float"></div>
-      <div class="absolute top-1/3 right-1/3 w-1 h-1 bg-white/25 rounded-full premium-float" style="animation-delay: 2s;"></div>
+    <!-- Simplified Gradient Overlay -->
+    <div class="absolute inset-0 z-10 bg-gradient-to-br from-[#1a4a7a]/85 via-[#2a5a8a]/70 to-white/30">
+      <!-- Minimal animated elements -->
+        <div class="absolute inset-0 opacity-10">
+          <div 
+          v-for="i in 3" 
+            :key="`wave-${i}`"
+          class="absolute w-6 h-3 bg-white/20 rounded-sm simple-float"
+          :style="getFloatingStyle(i)"
+          ></div>
+      </div>
     </div>
 
     <!-- Professional Content -->
-    <div ref="contentRef" class="relative z-30 text-center text-white px-6 max-w-5xl mx-auto">
-      <!-- Company Logo/Name with Professional Theme -->
-      <div ref="logoRef" class="mb-12">
-        <h1 class="text-6xl md:text-8xl font-bold mb-6 leading-tight">
-          <span ref="companyName" class="font-poppins text-white drop-shadow-2xl tracking-tight">
+    <div ref="contentRef" class="relative z-30 text-center text-white px-4 sm:px-6 max-w-5xl mx-auto py-8 sm:py-0">
+      <!-- Company Logo/Name -->
+      <div class="mb-8 sm:mb-12 animate-fade-up">
+        <h1 class="text-4xl xs:text-5xl sm:text-6xl md:text-8xl font-bold mb-4 sm:mb-6 leading-tight">
+          <span class="font-poppins text-white drop-shadow-2xl tracking-tight block animate-slide-up-delay-1">
             Arfan Express
           </span>
-          <br>
-          <span ref="companyType" class="text-4xl md:text-5xl font-inter text-secondary-300 font-light">
+          <br class="hidden xs:block">
+          <span class="text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-inter text-secondary-300 font-light block xs:inline animate-slide-up-delay-2">
             LIMITED
           </span>
         </h1>
-        <div ref="underline" class="w-32 h-1.5 bg-gradient-to-r from-secondary-400 to-secondary-500 mx-auto rounded-full shadow-lg"></div>
+        <div class="w-24 sm:w-32 h-1.5 bg-gradient-to-r from-secondary-400 to-secondary-500 mx-auto rounded-full shadow-lg animate-scale-up-delay-3"></div>
       </div>
 
-      <!-- Optimized Professional Tagline with Typewriter Effect -->
-      <div ref="taglineRef" class="mb-12">
-        <h2 class="text-2xl md:text-4xl font-inter mb-6 text-white font-light">
+      <!-- Optimized Tagline with Simple CSS Animation -->
+      <div class="mb-8 sm:mb-12 animate-fade-up-delay-4">
+        <h2 class="text-lg xs:text-xl sm:text-2xl md:text-4xl font-inter mb-4 sm:mb-6 text-white font-light leading-relaxed">
           <span ref="typewriterText">{{ currentTagline }}</span>
-          <span ref="cursor" class="animate-pulse text-blue-300 font-normal">|</span>
+          <span class="animate-pulse text-blue-300 font-normal">|</span>
         </h2>
-        <p ref="description" class="text-xl md:text-2xl text-gray-200/90 leading-relaxed max-w-4xl mx-auto font-light">
+        <p class="text-base xs:text-lg sm:text-xl md:text-2xl text-gray-200/90 leading-relaxed max-w-4xl mx-auto font-light px-2 sm:px-0">
           Leading freight forwarding company delivering innovative logistics solutions 
           that empower businesses to succeed worldwide.
         </p>
       </div>
 
-      <!-- Ocean CTA Buttons -->
-      <div ref="ctaRef" class="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16">
+      <!-- CTA Buttons -->
+      <div class="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center mb-12 sm:mb-16 px-2 sm:px-0 animate-fade-up-delay-5">
         <router-link 
-          ref="primaryBtn"
           to="/contact" 
-          class="group maritime-button px-10 py-5 rounded-xl font-semibold text-xl transition-all duration-500 transform hover:scale-105 hover:shadow-2xl shadow-lg relative overflow-hidden"
+          class="group maritime-button w-full sm:w-auto px-6 sm:px-10 py-4 sm:py-5 rounded-xl font-semibold text-lg sm:text-xl transition-all duration-300 transform hover:scale-105 hover:shadow-2xl shadow-lg relative overflow-hidden text-center"
         >
           <span class="relative z-10">Get Free Quote</span>
           <div class="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
         </router-link>
         <router-link 
-          ref="secondaryBtn"
           to="/services" 
-          class="group bg-transparent border-2 border-white/70 text-white hover:bg-white hover:text-[#1a4a7a] px-10 py-5 rounded-xl font-semibold text-xl transition-all duration-500 transform hover:scale-105 backdrop-blur-sm"
+          class="group bg-transparent border-2 border-white/70 text-white hover:bg-white hover:text-[#1a4a7a] w-full sm:w-auto px-6 sm:px-10 py-4 sm:py-5 rounded-xl font-semibold text-lg sm:text-xl transition-all duration-300 transform hover:scale-105 backdrop-blur-sm text-center"
         >
           <span class="relative z-10">Our Services</span>
         </router-link>
       </div>
 
-      <!-- Premium Trust Indicators -->
-      <div ref="statsRef" class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-        <div ref="stat1" class="group">
-          <div class="text-4xl md:text-5xl font-bold text-white mb-2 transition-transform duration-300 group-hover:scale-105 premium-glow">
+      <!-- Trust Indicators with CSS Animations -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-8 text-center px-2 sm:px-0 animate-fade-up-delay-6">
+        <div class="group">
+          <div class="text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-1 sm:mb-2 transition-transform duration-300 group-hover:scale-105 premium-glow">
             <span ref="counter1">15</span>+
           </div>
-          <div class="text-base md:text-lg text-gray-300 font-medium">Years Experience</div>
+          <div class="text-xs xs:text-sm sm:text-base md:text-lg text-gray-300 font-medium leading-tight">Years Experience</div>
         </div>
-        <div ref="stat2" class="group">
-          <div class="text-4xl md:text-5xl font-bold text-white mb-2 transition-transform duration-300 group-hover:scale-105 premium-glow">
+        <div class="group">
+          <div class="text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-1 sm:mb-2 transition-transform duration-300 group-hover:scale-105 premium-glow">
             <span ref="counter2">100</span>+
           </div>
-          <div class="text-base md:text-lg text-gray-300 font-medium">Global Partners</div>
+          <div class="text-xs xs:text-sm sm:text-base md:text-lg text-gray-300 font-medium leading-tight">Global Partners</div>
         </div>
-        <div ref="stat3" class="group">
-          <div class="text-4xl md:text-5xl font-bold text-white mb-2 transition-transform duration-300 group-hover:scale-105 premium-glow">
+        <div class="group">
+          <div class="text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-1 sm:mb-2 transition-transform duration-300 group-hover:scale-105 premium-glow">
             <span ref="counter3">50000</span>+
           </div>
-          <div class="text-base md:text-lg text-gray-300 font-medium">Successful Shipments</div>
+          <div class="text-xs xs:text-sm sm:text-base md:text-lg text-gray-300 font-medium leading-tight">Successful Shipments</div>
         </div>
-        <div ref="stat4" class="group">
-          <div class="text-4xl md:text-5xl font-bold text-white mb-2 transition-transform duration-300 group-hover:scale-105 premium-glow">
+        <div class="group">
+          <div class="text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-1 sm:mb-2 transition-transform duration-300 group-hover:scale-105 premium-glow">
             24/7
           </div>
-          <div class="text-base md:text-lg text-gray-300 font-medium">Global Support</div>
+          <div class="text-xs xs:text-sm sm:text-base md:text-lg text-gray-300 font-medium leading-tight">Global Support</div>
         </div>
       </div>
     </div>
-
-    
-
-    
   </section>
 </template>
 
 <script setup>
 import { ref, onMounted, onUnmounted, nextTick } from 'vue';
-import { gsap } from 'gsap';
 
 // Template refs
 const heroRef = ref(null);
-const contentRef = ref(null);
-const logoRef = ref(null);
-const companyName = ref(null);
-const companyType = ref(null);
-const underline = ref(null);
-const taglineRef = ref(null);
 const typewriterText = ref(null);
-const cursor = ref(null);
-const description = ref(null);
-const ctaRef = ref(null);
-const primaryBtn = ref(null);
-const secondaryBtn = ref(null);
-const statsRef = ref(null);
-const stat1 = ref(null);
-const stat2 = ref(null);
-const stat3 = ref(null);
-const stat4 = ref(null);
 const counter1 = ref(null);
 const counter2 = ref(null);
 const counter3 = ref(null);
@@ -160,23 +130,20 @@ const heroImages = ref([
 ]);
 let slideInterval = null;
 
-// Optimized taglines
+// Simplified taglines
 const taglines = [
   "Connecting Global Destinations",
   "Your Trusted Logistics Partner", 
   "Simplifying Global Trade",
   "Delivering Excellence Worldwide",
-  "Innovative Freight Solutions",
 ];
 
 const currentTagline = ref(taglines[0]);
 let currentTaglineIndex = 0;
-let typewriterRAF = null;
-let switchTimeout = null;
-let masterTimeline = null;
+let typewriterTimeout = null;
 
-// Optimized typewriter effect using requestAnimationFrame
-const optimizedTypeWriter = (text, onComplete) => {
+// Simplified typewriter effect without requestAnimationFrame
+const simpleTypeWriter = (text, onComplete) => {
   let charIndex = 0;
   let currentText = '';
   
@@ -185,40 +152,31 @@ const optimizedTypeWriter = (text, onComplete) => {
       currentText += text.charAt(charIndex);
       currentTagline.value = currentText;
       charIndex++;
-      // Use requestAnimationFrame for smooth animation
-      typewriterRAF = requestAnimationFrame(() => {
-        setTimeout(type, 60); // Faster typing speed
-      });
-    } else {
-      // Animation complete
-      if (onComplete) {
-        switchTimeout = setTimeout(onComplete, 2500); // Shorter pause
-      }
+      typewriterTimeout = setTimeout(type, 80);
+    } else if (onComplete) {
+      typewriterTimeout = setTimeout(onComplete, 2000);
     }
   };
   
-  // Reset and start typing
   currentText = '';
   currentTagline.value = '';
   charIndex = 0;
-  
-  // Start after a brief delay
-  switchTimeout = setTimeout(type, 300);
+  typewriterTimeout = setTimeout(type, 500);
 };
 
 const switchTagline = () => {
   const nextText = taglines[currentTaglineIndex];
-  optimizedTypeWriter(nextText, () => {
+  simpleTypeWriter(nextText, () => {
     currentTaglineIndex = (currentTaglineIndex + 1) % taglines.length;
-    // Schedule next switch
-    switchTimeout = setTimeout(switchTagline, 1000);
+    typewriterTimeout = setTimeout(switchTagline, 1000);
   });
 };
 
 const startSlideshow = () => {
   slideInterval = setInterval(() => {
     currentSlide.value = (currentSlide.value + 1) % heroImages.value.length;
-  }, 6000); // Slower slide transition
+    lazyLoadImages();
+  }, 6000);
 };
 
 const stopSlideshow = () => {
@@ -228,128 +186,77 @@ const stopSlideshow = () => {
   }
 };
 
+// Lazy load images for better performance
+const lazyLoadImages = () => {
+  const lazyImages = document.querySelectorAll('.lazy-image.lazy');
+  lazyImages.forEach(img => {
+    if (img.dataset.src) {
+      img.src = img.dataset.src;
+      img.classList.remove('lazy');
+    }
+  });
+};
+
+// Simple counter animation with CSS
 const animateCounters = () => {
-  // Optimized counter animations
-  gsap.to(counter1.value, {
-    innerHTML: 15,
-    duration: 1.5,
-    ease: "power2.out",
-    snap: { innerHTML: 1 }
-  });
+  // Use CSS animations instead of GSAP for better performance
+  const counters = [counter1.value, counter2.value, counter3.value];
+  const targets = [15, 100, 50000];
   
-  gsap.to(counter2.value, {
-    innerHTML: 100,
-    duration: 1.8,
-    ease: "power2.out", 
-    snap: { innerHTML: 1 }
-  });
-  
-  gsap.to(counter3.value, {
-    innerHTML: 50000,
-    duration: 2,
-    ease: "power2.out",
-    snap: { innerHTML: 1000 }
+  counters.forEach((counter, index) => {
+    if (counter) {
+      let start = 0;
+      const end = targets[index];
+      const increment = end / 60; // Animate over ~1 second at 60fps
+      
+      const count = () => {
+        start += increment;
+        if (start < end) {
+          counter.textContent = Math.floor(start);
+          requestAnimationFrame(count);
+        } else {
+          counter.textContent = end;
+        }
+      };
+      
+      requestAnimationFrame(count);
+    }
   });
 };
 
-const initOptimizedAnimations = () => {
-  // Create simplified master timeline
-  masterTimeline = gsap.timeline();
-  
-  // Set initial states - batch for better performance
-  gsap.set([companyName.value, companyType.value], { opacity: 0, y: 60 });
-  gsap.set(underline.value, { scaleX: 0 });
-  gsap.set([typewriterText.value, description.value], { opacity: 0, y: 30 });
-  gsap.set([primaryBtn.value, secondaryBtn.value], { opacity: 0, y: 50 });
-  gsap.set([stat1.value, stat2.value, stat3.value, stat4.value], { opacity: 0, y: 40 });
-  
-  // Optimized animation sequence - faster and smoother
-  masterTimeline
-    .to(companyName.value, {
-      opacity: 1,
-      y: 0,
-      duration: 0.8,
-      ease: "power2.out"
-    })
-    .to(companyType.value, {
-      opacity: 1,
-      y: 0,
-      duration: 0.6,
-      ease: "power2.out"
-    }, "-=0.4")
-    .to(underline.value, {
-      scaleX: 1,
-      duration: 0.6,
-      ease: "power2.out"
-    }, "-=0.2")
-    .to(typewriterText.value, {
-      opacity: 1,
-      y: 0,
-      duration: 0.5,
-      ease: "power2.out"
-    }, "+=0.2")
-    .to(description.value, {
-      opacity: 1,
-      y: 0,
-      duration: 0.6,
-      ease: "power2.out"
-    }, "-=0.2")
-    .to([primaryBtn.value, secondaryBtn.value], {
-      opacity: 1,
-      y: 0,
-      duration: 0.6,
-      stagger: 0.15,
-      ease: "power2.out"
-    }, "-=0.2")
-    .to([stat1.value, stat2.value, stat3.value, stat4.value], {
-      opacity: 1,
-      y: 0,
-      duration: 0.5,
-      stagger: 0.08,
-      ease: "power2.out",
-      onComplete: animateCounters
-    }, "-=0.2");
-};
-
-const getContainerStyle = (index) => {
+const getFloatingStyle = (index) => {
   return {
-    top: `${20 + (index * 15)}%`,
-    left: `${10 + (index * 15)}%`,
-    transform: `rotate(${15 + index * 15}deg)`,
+    top: `${20 + (index * 20)}%`,
+    left: `${10 + (index * 25)}%`,
+    animationDelay: `${index * 0.5}s`,
   };
 };
 
 // Cleanup function
 const cleanup = () => {
-  if (typewriterRAF) {
-    cancelAnimationFrame(typewriterRAF);
-    typewriterRAF = null;
-  }
-  if (switchTimeout) {
-    clearTimeout(switchTimeout);
-    switchTimeout = null;
-  }
-  if (masterTimeline) {
-    masterTimeline.kill();
-    masterTimeline = null;
+  if (typewriterTimeout) {
+    clearTimeout(typewriterTimeout);
+    typewriterTimeout = null;
   }
   stopSlideshow();
 };
 
 onMounted(() => {
   nextTick(() => {
-    // Start slideshow immediately
     startSlideshow();
     
-    // Start optimized animations after a shorter delay
-    setTimeout(() => {
-      initOptimizedAnimations();
-    }, 200);
-    
-    // Start typewriter effect after animations begin
+    // Start typewriter effect
     setTimeout(() => {
       switchTagline();
-    }, 1200);
+    }, 1000);
+    
+    // Start counter animations
+    setTimeout(() => {
+      animateCounters();
+    }, 1500);
+    
+    // Initialize lazy loading for images
+    lazyLoadImages();
   });
 });
 
@@ -359,83 +266,222 @@ onUnmounted(() => {
 </script>
 
 <style scoped>
-/* Hero Slideshow - Optimized */
-.hero-slide {
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  will-change: opacity;
+/* Optimized CSS animations instead of GSAP */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-/* Optimized animations with hardware acceleration */
-.wave-animation {
-  animation: float 6s ease-in-out infinite;
-  will-change: transform;
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-.premium-float {
-  animation: drift 8s ease-in-out infinite;
-  will-change: transform;
+@keyframes scaleUp {
+  from {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+  to {
+    opacity: 1;
+    transform: scaleX(1);
+  }
 }
 
-.wave-layer-1 {
-  animation: wave 3s ease-in-out infinite;
-  will-change: transform;
+@keyframes simpleFloat {
+  0%, 100% { 
+    transform: translateY(0px) rotate(0deg); 
+  }
+  50% { 
+    transform: translateY(-10px) rotate(180deg); 
+  }
 }
 
-.wave-layer-2 {
-  animation: wave 4s ease-in-out infinite reverse;
-  will-change: transform;
+/* Animation classes */
+.animate-fade-up {
+  animation: fadeUp 0.8s ease-out forwards;
 }
 
-/* Optimized keyframes */
-@keyframes float {
-  0%, 100% { transform: translateY(0px) rotate(0deg); }
-  50% { transform: translateY(-15px) rotate(180deg); }
+.animate-slide-up-delay-1 {
+  animation: slideUp 0.6s ease-out 0.2s both;
 }
 
-@keyframes drift {
-  0%, 100% { transform: translateX(0px) translateY(0px) scale(1); }
-  50% { transform: translateX(15px) translateY(-10px) scale(1.1); }
+.animate-slide-up-delay-2 {
+  animation: slideUp 0.6s ease-out 0.4s both;
 }
 
-@keyframes wave {
-  0%, 100% { transform: translateX(0px); }
-  50% { transform: translateX(10px); }
+.animate-scale-up-delay-3 {
+  animation: scaleUp 0.6s ease-out 0.6s both;
+}
+
+.animate-fade-up-delay-4 {
+  animation: fadeUp 0.6s ease-out 0.8s both;
+}
+
+.animate-fade-up-delay-5 {
+  animation: fadeUp 0.6s ease-out 1s both;
+}
+
+.animate-fade-up-delay-6 {
+  animation: fadeUp 0.6s ease-out 1.2s both;
+}
+
+.simple-float {
+  animation: simpleFloat 6s ease-in-out infinite;
+}
+
+/* Hero image optimizations */
+.hero-slide img {
+  will-change: auto;
+}
+
+.lazy-image {
+  transition: opacity 0.3s ease-in-out;
+}
+
+.lazy-image.lazy {
+  opacity: 0;
+}
+
+/* Mobile-first responsive container */
+.brochure-hero-bg {
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+/* Mobile optimizations */
+@media (max-width: 640px) {
+  .brochure-hero-bg {
+    min-height: 100svh;
+    padding-top: max(env(safe-area-inset-top, 0px), 80px);
+    padding-bottom: max(env(safe-area-inset-bottom, 0px), 20px);
+  }
+  
+  .relative.z-30 {
+    min-height: calc(100vh - 160px);
+    min-height: calc(100svh - 160px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+}
+
+/* Extra small devices */
+@media (max-width: 475px) {
+  .brochure-hero-bg {
+    padding-top: max(env(safe-area-inset-top, 0px), 90px);
+  }
+  
+  h1 {
+    line-height: 1.1 !important;
+  }
+  
+  h2 {
+    line-height: 1.3 !important;
+  }
+  
+  .maritime-button,
+  .group.bg-transparent {
+    font-size: 1rem !important;
+    padding: 0.875rem 1.5rem !important;
+  }
 }
 
 /* Performance optimizations */
 .maritime-button {
   background: linear-gradient(135deg, #059669 0%, #10b981 100%);
-  will-change: transform;
 }
 
 .premium-glow {
   text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
 }
 
-/* Reduced motion for better performance */
+/* Mobile text overflow protection */
+@media (max-width: 640px) {
+  .font-poppins,
+  .font-inter {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+  }
+  
+  .grid.grid-cols-2 > div {
+    min-width: 0;
+    overflow: hidden;
+  }
+  
+  .grid.grid-cols-2 .text-xs,
+  .grid.grid-cols-2 .text-sm {
+    font-size: 0.75rem !important;
+    line-height: 1.2 !important;
+  }
+}
+
+/* Landscape phone optimization */
+@media (max-height: 500px) and (orientation: landscape) {
+  .brochure-hero-bg {
+    min-height: 100vh;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+  
+  .relative.z-30 {
+    min-height: auto;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+  
+  .mb-8,
+  .mb-12 {
+    margin-bottom: 1rem !important;
+  }
+  
+  .sm\\:mb-12,
+  .sm\\:mb-16 {
+    margin-bottom: 1rem !important;
+  }
+}
+
+/* Reduced motion support */
 @media (prefers-reduced-motion: reduce) {
-  .wave-animation,
-  .premium-float,
-  .wave-layer-1,
-  .wave-layer-2 {
+  .simple-float,
+  .animate-pulse {
     animation: none;
   }
   
-  .animate-pulse {
+  .animate-fade-up,
+  .animate-slide-up-delay-1,
+  .animate-slide-up-delay-2,
+  .animate-scale-up-delay-3,
+  .animate-fade-up-delay-4,
+  .animate-fade-up-delay-5,
+  .animate-fade-up-delay-6 {
     animation: none;
-}
-}
-
-/* Hardware acceleration for smooth animations */
-.group:hover {
-  transform: translateY(-2px);
-  will-change: transform;
+    opacity: 1;
+    transform: none;
+  }
 }
 
-.transition-all {
-  transition: all 0.3s ease;
-  will-change: transform, opacity;
+/* iOS Safari specific fixes */
+@supports (-webkit-touch-callout: none) {
+  .brochure-hero-bg {
+    min-height: -webkit-fill-available;
+  }
 }
 </style> 

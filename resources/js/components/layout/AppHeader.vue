@@ -320,4 +320,67 @@ onUnmounted(() => {
   background: rgba(16, 185, 129, 0.3);
   border-radius: 2px;
 }
+
+/* Mobile specific optimizations */
+@media (max-width: 768px) {
+  /* Ensure header is properly positioned on mobile */
+  header {
+    z-index: 9999;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
+  
+  /* Ensure mobile menu doesn't interfere with content */
+  .lg\\:hidden.py-6 {
+    max-height: calc(100vh - 80px);
+    overflow-y: auto;
+  }
+  
+  /* Optimize logo size for very small screens */
+  .w-12.h-12 {
+    width: 2.5rem !important;
+    height: 2.5rem !important;
+  }
+  
+  .text-2xl {
+    font-size: 1.25rem !important;
+    line-height: 1.75rem !important;
+  }
+  
+  .text-xs {
+    font-size: 0.6rem !important;
+  }
+}
+
+/* Extra small devices */
+@media (max-width: 475px) {
+  /* Further optimize header for very small screens */
+  .max-w-7xl {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+  
+  .h-20 {
+    height: 4rem !important; /* Reduce header height */
+  }
+  
+  /* Ensure mobile menu button is easily tappable */
+  .lg\\:hidden.p-3 {
+    padding: 0.875rem !important;
+    min-width: 44px;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+/* iOS Safari specific header fixes */
+@supports (-webkit-touch-callout: none) {
+  header {
+    /* Ensure header stays at top on iOS */
+    position: fixed;
+    top: env(safe-area-inset-top, 0px);
+  }
+}
 </style> 

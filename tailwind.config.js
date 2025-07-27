@@ -8,6 +8,9 @@ export default defineConfig({
   ],
   theme: {
     extend: {
+      screens: {
+        'xs': '475px',
+      },
       colors: {
         // Brand Blue
         primary: {
@@ -100,8 +103,17 @@ export default defineConfig({
         '10': '2.5rem',
         '12': '3rem',
         '16': '4rem',
+        '18': '4.5rem',
         '20': '5rem',
         '24': '6rem',
+        '88': '22rem',
+        '128': '32rem',
+      },
+      minHeight: {
+        'screen-safe': ['100vh', '100dvh'],
+      },
+      height: {
+        'screen-safe': ['100vh', '100svh'],
       },
       animation: {
         'float': 'float 6s ease-in-out infinite',

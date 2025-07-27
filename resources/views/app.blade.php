@@ -31,106 +31,91 @@
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('favicon-16x16.png') }}">
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('apple-touch-icon.png') }}">
     
-    <!-- Preload critical resources -->
+    <!-- Critical resource preloads -->
     <link rel="preload" href="{{ asset('images/hero.jpg') }}" as="image" importance="high">
     <link rel="preload" href="{{ asset('images/logo.jpg') }}" as="image" importance="high">
     
-    <!-- Fonts -->
+    <!-- DNS prefetch for external resources -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    
+    <!-- Preconnect to critical external domains -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Optimized font loading -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600&display=swap" rel="stylesheet">
     
     <!-- Scripts and Styles -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     
-    <!-- Additional Head Scripts -->
+    <!-- Performance optimizations -->
     <script>
-        // Set theme preference before page load to prevent flash
+        // Prevent FOUC and set theme before page load
         (function() {
             const theme = localStorage.getItem('theme') || 'light';
             document.documentElement.setAttribute('data-theme', theme);
+            
+            // Preload critical routes
+            if ('IntersectionObserver' in window) {
+                // Setup intersection observer for lazy loading
+                window.lazyLoadObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const img = entry.target;
+                            if (img.dataset.src) {
+                                img.src = img.dataset.src;
+                                img.classList.remove('lazy');
+                                window.lazyLoadObserver.unobserve(img);
+                            }
+                        }
+                    });
+                });
+            }
         })();
     </script>
 </head>
 <body class="font-inter antialiased">
     <!-- Vue.js App Mount Point -->
     <div id="app">
-        <!-- Loading Spinner (shown while Vue.js loads) -->
-        <div class="min-h-screen flex items-center justify-center bg-background-50">
+        <!-- Optimized Loading Spinner -->
+        <div class="min-h-screen flex items-center justify-center bg-gray-50">
             <div class="text-center">
-                <div class="animate-spin rounded-full h-16 w-16 border-b-2 border-primary mx-auto mb-4"></div>
-                <p class="text-neutral-600 text-lg">Loading Arfan Express...</p>
+                <div class="w-12 h-12 border-3 border-blue-600 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+                <p class="text-gray-600 text-sm">Loading...</p>
             </div>
         </div>
     </div>
 
     <!-- Fallback for users without JavaScript -->
     <noscript>
-        <div class="min-h-screen flex items-center justify-center bg-background-50">
+        <div class="min-h-screen flex items-center justify-center bg-gray-50">
             <div class="text-center max-w-md mx-auto p-6">
-                <h1 class="text-3xl font-bold text-neutral-600 mb-4">JavaScript Required</h1>
-                <p class="text-neutral-500 mb-6">
+                <h1 class="text-2xl font-bold text-gray-800 mb-4">JavaScript Required</h1>
+                <p class="text-gray-600 mb-6">
                     This website requires JavaScript to function properly. Please enable JavaScript in your browser settings and refresh the page.
                 </p>
                 <div class="bg-white rounded-lg p-6 shadow-lg">
-                    <h2 class="text-xl font-semibold text-primary mb-3">Contact Arfan Express</h2>
-                    <p class="text-neutral-600 mb-2">📧 Email: motiur@arfanexpressbd.com</p>
-                    <p class="text-neutral-600 mb-2">📞 Phone: Contact us via email</p>
-                    <p class="text-neutral-600">🌐 Visit our website for more details</p>
+                    <h2 class="text-lg font-semibold text-blue-600 mb-3">Contact Arfan Express</h2>
+                    <p class="text-gray-600 mb-2">📧 Email: motiur@arfanexpressbd.com</p>
+                    <p class="text-gray-600 mb-2">📞 Phone: Contact us via email</p>
+                    <p class="text-gray-600">🌐 Visit our website for more details</p>
                 </div>
             </div>
         </div>
     </noscript>
 
-    <!-- Google Analytics -->
+    <!-- Analytics - Only in production -->
     @if(config('app.env') === 'production' && !empty(env('GOOGLE_ANALYTICS_ID')))
     <script async src="https://www.googletagmanager.com/gtag/js?id={{ env('GOOGLE_ANALYTICS_ID') }}"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
-        gtag('config', '{{ env('GOOGLE_ANALYTICS_ID') }}');
+        gtag('config', '{{ env('GOOGLE_ANALYTICS_ID') }}', {
+            send_page_view: false // We'll send page views manually in Vue
+        });
     </script>
     @endif
-
-    <!-- Schema.org Structured Data -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "Organization",
-        "name": "Arfan Express LTD",
-        "description": "Global logistics and freight forwarding services",
-        "url": "{{ url('/') }}",
-        "logo": "{{ asset('images/logo.jpg') }}",
-        "contactPoint": {
-            "@type": "ContactPoint",
-            "email": "motiur@arfanexpressbd.com",
-            "contactType": "customer service",
-            "availableLanguage": ["English"]
-        },
-        "service": [
-            {
-                "@type": "Service",
-                "name": "Ocean Freight",
-                "description": "Sea shipping solutions for large cargo volumes"
-            },
-            {
-                "@type": "Service", 
-                "name": "Air Freight",
-                "description": "Fast air cargo services for time-sensitive shipments"
-            },
-            {
-                "@type": "Service",
-                "name": "Road Transport", 
-                "description": "Ground transportation and last-mile delivery"
-            },
-            {
-                "@type": "Service",
-                "name": "Customs Brokerage", 
-                "description": "Professional customs clearance and documentation services"
-            }
-        ]
-    }
-    </script>
 </body>
 </html> 
