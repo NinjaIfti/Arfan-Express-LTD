@@ -98,7 +98,7 @@
 
 <script setup>
 import { ref, onMounted, nextTick } from 'vue';
-import { gsap } from 'gsap';
+import { gsap } from '@/utils/gsap';
 
 const props = defineProps({
   service: {

@@ -16,11 +16,11 @@
               class="w-12 h-12 object-contain rounded-xl shadow-xl group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 bg-white p-1"
             />
             <!-- Floating indicator -->
-            <div class="absolute -top-1 -right-1 w-4 h-4 bg-secondary-400 rounded-full border-2 border-white shadow-lg animate-pulse"></div>
+            <div class="absolute -top-1 -right-1 w-4 h-4 bg-blue-400 rounded-full border-2 border-white shadow-lg animate-pulse"></div>
           </div>
           
           <div class="flex flex-col">
-            <span class="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary-700 to-secondary-600 font-poppins">
+            <span class="text-2xl font-bold text-gray-900 font-poppins">
               Arfan Express
             </span>
             <span class="text-xs text-gray-500 font-medium tracking-wider">LIMITED</span>
@@ -34,22 +34,22 @@
             :key="item.name"
             :ref="el => navRefs[index] = el"
             :to="item.path" 
-            class="relative group px-4 py-3 rounded-xl transition-all duration-300 text-gray-700 hover:text-primary-600 font-semibold text-sm uppercase tracking-wider"
-            :class="{ 'text-primary-600 bg-primary-50': $route.path === item.path }"
+            class="relative group px-4 py-3 rounded-xl transition-all duration-300 text-gray-700 hover:text-blue-600 font-semibold text-sm uppercase tracking-wider"
+            :class="{ 'text-blue-600 bg-blue-50': $route.path === item.path }"
           >
             {{ item.name }}
             <!-- Professional underline animation -->
-            <span class="absolute bottom-1 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-primary-500 to-secondary-500 group-hover:w-8 transition-all duration-300 rounded-full"></span>
+            <span class="absolute bottom-1 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-indigo-500 group-hover:w-8 transition-all duration-300 rounded-full"></span>
             
             <!-- Hover background -->
-            <div class="absolute inset-0 bg-gradient-to-r from-primary-50 to-secondary-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl -z-10"></div>
+            <div class="absolute inset-0 bg-gradient-to-r from-blue-50 to-indigo-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl -z-10"></div>
           </router-link>
           
           <!-- Professional CTA button -->
           <router-link 
             ref="ctaRef"
             to="/contact"
-            class="group ml-6 bg-gradient-to-r from-secondary-500 to-secondary-600 hover:from-secondary-400 hover:to-secondary-500 text-white px-8 py-3 rounded-xl font-semibold hover:shadow-xl hover:scale-105 transition-all duration-300 border border-secondary-500/20 relative overflow-hidden"
+            class="group ml-6 bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-400 hover:to-indigo-500 text-white px-8 py-3 rounded-xl font-semibold hover:shadow-xl hover:scale-105 transition-all duration-300 border border-blue-500/20 relative overflow-hidden"
           >
             <span class="relative z-10 flex items-center">
               Get Free Quote
@@ -67,7 +67,7 @@
         <button 
           ref="mobileButtonRef"
           @click="toggleMobileMenu" 
-          class="lg:hidden relative p-3 rounded-xl bg-gray-100 hover:bg-gray-200 text-gray-700 hover:text-primary-600 transition-all duration-300 group"
+          class="lg:hidden relative p-3 rounded-xl bg-gray-100 hover:bg-gray-200 text-gray-700 hover:text-blue-600 transition-all duration-300 group"
         >
           <div class="w-6 h-6 relative">
             <span 
@@ -107,11 +107,11 @@
               :ref="el => mobileNavRefs[index] = el"
               :to="item.path" 
               @click="closeMobileMenu"
-              class="block px-6 py-4 text-gray-700 hover:text-primary-600 hover:bg-gradient-to-r hover:from-primary-50 hover:to-secondary-50 transition-all duration-300 rounded-xl mx-2 font-semibold relative group"
-              :class="{ 'text-primary-600 bg-gradient-to-r from-primary-50 to-secondary-50': $route.path === item.path }"
+              class="block px-6 py-4 text-gray-700 hover:text-blue-600 hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50 transition-all duration-300 rounded-xl mx-2 font-semibold relative group"
+              :class="{ 'text-blue-600 bg-gradient-to-r from-blue-50 to-indigo-50': $route.path === item.path }"
             >
               <span class="flex items-center">
-                <div class="w-2 h-2 bg-secondary-500 rounded-full mr-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div class="w-2 h-2 bg-blue-500 rounded-full mr-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 {{ item.name }}
               </span>
             </router-link>
@@ -121,7 +121,7 @@
               <router-link 
                 to="/contact"
                 @click="closeMobileMenu"
-                class="group block w-full text-center bg-gradient-to-r from-secondary-500 to-secondary-600 hover:from-secondary-400 hover:to-secondary-500 text-white px-8 py-4 rounded-xl font-semibold hover:shadow-xl transition-all duration-300 relative overflow-hidden"
+                class="group block w-full text-center bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-400 hover:to-indigo-500 text-white px-8 py-4 rounded-xl font-semibold hover:shadow-xl transition-all duration-300 relative overflow-hidden"
               >
                 <span class="relative z-10 flex items-center justify-center">
                   Get Free Quote
@@ -142,8 +142,10 @@
 <script setup>
 import { ref, computed, onMounted, onUnmounted, nextTick } from 'vue';
 import { useRoute } from 'vue-router';
-import { gsap } from 'gsap';
-import logoImage from '@/assets/images/logo.jpg';
+import { gsap } from '@/utils/gsap';
+
+// Use public image path
+const logoImage = '/images/logo.jpg';
 
 const route = useRoute();
 const isScrolled = ref(false);
@@ -182,7 +184,7 @@ const toggleMobileMenu = () => {
   
   if (isMobileMenuOpen.value) {
     nextTick(() => {
-      // Animate mobile menu items in
+      // Animate mobile menu items in with full GSAP
       gsap.from(mobileNavRefs.value.filter(Boolean), {
         opacity: 0,
         y: 20,
@@ -199,6 +201,8 @@ const closeMobileMenu = () => {
 };
 
 const initHeaderAnimations = () => {
+  // Using full GSAP import - includes all built-in properties like opacity, y, x, scale
+  
   // Initial animation for navigation items
   gsap.from(navRefs.value.filter(Boolean), {
     opacity: 0,

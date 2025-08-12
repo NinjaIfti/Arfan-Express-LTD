@@ -63,37 +63,7 @@
       </div>
     </section>
 
-    <!-- Quote Request Section -->
-    <section class="py-20 bg-primary text-white">
-      <div class="container mx-auto px-6 text-center">
-        <h2 class="text-4xl font-bold mb-6" data-aos="fade-up">
-          Ready to Get Started?
-        </h2>
-        <p class="text-xl opacity-90 mb-8 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="200">
-          Contact us today for a customized quote tailored to your specific logistics needs
-        </p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center" data-aos="fade-up" data-aos-delay="400">
-          <router-link 
-            to="/contact" 
-            class="inline-flex items-center bg-secondary hover:bg-green-600 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 transform hover:scale-105"
-          >
-            Request Quote
-            <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-            </svg>
-          </router-link>
-          <a 
-            href="tel:+1234567890" 
-            class="inline-flex items-center bg-transparent border-2 border-white text-white hover:bg-white hover:text-primary px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 transform hover:scale-105"
-          >
-            Call Us Now
-            <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
-            </svg>
-          </a>
-        </div>
-      </div>
-    </section>
+   
   </div>
 </template>
 
@@ -107,7 +77,7 @@ import RoadTransportService from '../components/services/RoadTransportService.vu
 import AirFreightService from '../components/services/AirFreightService.vue';
 import SupplyChainService from '../components/services/SupplyChainService.vue';
 import DeliveryTermsService from '../components/services/DeliveryTermsService.vue';
-import { gsap } from 'gsap';
+import { gsap } from '@/utils/gsap';
 
 // Import background image
 import serviceImage from '@/assets/images/service.jpg';

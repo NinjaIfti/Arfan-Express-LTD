@@ -89,7 +89,7 @@
               <!-- Stats Grid -->
               <div class="grid grid-cols-2 gap-4">
                 <div class="text-center bg-white/20 backdrop-blur-sm rounded-xl p-3">
-                  <div class="text-2xl font-bold text-white mb-1">15+</div>
+                  <div class="text-2xl font-bold text-white mb-1">30+</div>
                   <div class="text-blue-200 text-xs">Years Experience</div>
                 </div>
                 <div class="text-center bg-white/20 backdrop-blur-sm rounded-xl p-3">
@@ -97,7 +97,7 @@
                   <div class="text-blue-200 text-xs">Global Partners</div>
                 </div>
                 <div class="text-center bg-white/20 backdrop-blur-sm rounded-xl p-3">
-                  <div class="text-2xl font-bold text-white mb-1">50K+</div>
+                  <div class="text-2xl font-bold text-white mb-1">1M+</div>
                   <div class="text-blue-200 text-xs">Shipments</div>
                 </div>
                 <div class="text-center bg-white/20 backdrop-blur-sm rounded-xl p-3">

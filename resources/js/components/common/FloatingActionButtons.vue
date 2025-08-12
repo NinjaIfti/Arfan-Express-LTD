@@ -38,7 +38,7 @@
     <div class="group relative">
       <a 
         :href="`tel:+8801711560113`"
-        class="group/btn relative bg-gradient-to-r from-primary-600 to-primary-700 hover:from-primary-500 hover:to-primary-600 text-white p-4 rounded-2xl shadow-2xl hover:shadow-primary-500/25 transition-all duration-500 transform hover:scale-110 hover:-translate-y-1 flex items-center justify-center overflow-hidden"
+        class="group/btn relative bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-500 hover:to-blue-600 text-white p-4 rounded-2xl shadow-2xl hover:shadow-blue-500/25 transition-all duration-500 transform hover:scale-110 hover:-translate-y-1 flex items-center justify-center overflow-hidden"
         title="Call us now"
         @mouseenter="onButtonHover"
         @mouseleave="onButtonLeave"
@@ -52,7 +52,7 @@
       </svg>
 
         <!-- Pulse animation -->
-        <div class="absolute inset-0 bg-primary-400 rounded-2xl animate-ping opacity-20 animation-delay-1000"></div>
+        <div class="absolute inset-0 bg-blue-400 rounded-2xl animate-ping opacity-20 animation-delay-1000"></div>
       </a>
       
       <!-- Professional Tooltip -->
@@ -70,7 +70,7 @@
     <div class="group relative">
       <a 
         :href="`mailto:info@arfanexpressbd.com`"
-        class="group/btn relative bg-gradient-to-r from-secondary-600 to-secondary-700 hover:from-secondary-500 hover:to-secondary-600 text-white p-4 rounded-2xl shadow-2xl hover:shadow-secondary-500/25 transition-all duration-500 transform hover:scale-110 hover:-translate-y-1 flex items-center justify-center overflow-hidden"
+        class="group/btn relative bg-gradient-to-r from-indigo-600 to-purple-700 hover:from-indigo-500 hover:to-purple-600 text-white p-4 rounded-2xl shadow-2xl hover:shadow-indigo-500/25 transition-all duration-500 transform hover:scale-110 hover:-translate-y-1 flex items-center justify-center overflow-hidden"
         title="Send us an email"
         @mouseenter="onButtonHover"
         @mouseleave="onButtonLeave"
@@ -84,7 +84,7 @@
         </svg>
 
         <!-- Pulse animation -->
-        <div class="absolute inset-0 bg-secondary-400 rounded-2xl animate-ping opacity-20 animation-delay-2000"></div>
+        <div class="absolute inset-0 bg-indigo-400 rounded-2xl animate-ping opacity-20 animation-delay-2000"></div>
       </a>
       
       <!-- Professional Tooltip -->
@@ -104,7 +104,7 @@
 
 <script setup>
 import { ref, onMounted, nextTick } from 'vue';
-import { gsap } from 'gsap';
+import { gsap } from '@/utils/gsap';
 
 // Template refs
 const fabRef = ref(null);

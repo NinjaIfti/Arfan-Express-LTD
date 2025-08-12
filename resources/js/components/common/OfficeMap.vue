@@ -8,8 +8,8 @@
         :class="[
           'px-6 py-3 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105',
           idx === selectedIndex 
-            ? 'bg-gradient-to-r from-primary-600 to-primary-700 text-white shadow-lg' 
-            : 'bg-white text-primary-600 border-2 border-primary-200 hover:bg-primary-50 hover:border-primary-300'
+            ? 'bg-gradient-to-r from-blue-600 to-indigo-700 text-white shadow-lg' 
+            : 'bg-white text-blue-700 border-2 border-blue-200 hover:bg-blue-50 hover:border-blue-300'
         ]"
         @click="selectLocation(idx)"
       >
@@ -50,16 +50,16 @@
     </div>
     
     <!-- Selected Location Info -->
-    <div class="mt-6 bg-gradient-to-r from-primary-50 to-primary-100 rounded-xl p-6 border border-primary-200">
+    <div class="mt-6 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-6 border border-blue-200">
       <div class="flex items-start space-x-4">
-        <div class="flex-shrink-0 w-12 h-12 bg-primary-600 rounded-xl flex items-center justify-center">
+        <div class="flex-shrink-0 w-12 h-12 bg-blue-600 rounded-xl flex items-center justify-center">
           <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-4m-5 0H3m2 0h4M9 7h6m-6 4h6m-6 4h6"/>
           </svg>
         </div>
         <div class="flex-1">
-          <h3 class="text-xl font-bold text-primary-800 mb-2">{{ currentLocation.city }}</h3>
-          <p class="text-gray-700 leading-relaxed">{{ currentLocation.address }}</p>
+          <h3 class="text-xl font-bold text-gray-900 mb-2">{{ currentLocation.city }}</h3>
+          <p class="text-gray-800 leading-relaxed">{{ currentLocation.address }}</p>
         </div>
       </div>
     </div>

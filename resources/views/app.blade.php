@@ -33,7 +33,6 @@
     
     <!-- Critical resource preloads -->
     <link rel="preload" href="{{ asset('images/hero.jpg') }}" as="image" importance="high">
-    <link rel="preload" href="{{ asset('images/logo.jpg') }}" as="image" importance="high">
     
     <!-- DNS prefetch for external resources -->
     <link rel="dns-prefetch" href="//fonts.googleapis.com">

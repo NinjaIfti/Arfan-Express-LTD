@@ -45,7 +45,7 @@
             Arfan Express
           </span>
           <br class="hidden xs:block">
-          <span class="text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-inter text-secondary-300 font-light block xs:inline animate-slide-up-delay-2">
+          <span class="text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-inter text-secondary-300 font-bold block xs:inline animate-slide-up-delay-2">
             LIMITED
           </span>
         </h1>

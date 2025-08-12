@@ -9,7 +9,7 @@
           alt="Contact Arfan Express" 
           class="w-full h-full object-cover opacity-40"
         />
-        <div class="absolute inset-0 bg-gradient-to-br from-primary-900/40 via-primary-800/40 to-primary-700/40"></div>
+        <div class="absolute inset-0 bg-gradient-to-br from-blue-900/40 via-indigo-800/40 to-purple-700/40"></div>
       </div>
       
       <!-- Background Pattern -->
@@ -22,9 +22,9 @@
       <div class="container mx-auto px-6 relative z-10">
         <div class="text-center">
           <div ref="heroTitle" class="mb-8">
-            <span class="text-sm font-semibold text-secondary-300 uppercase tracking-wider mb-2 block">Contact Us</span>
-            <h1 class="text-6xl md:text-7xl font-bold mb-6 leading-tight">
-              Get In <span class="text-secondary-300">Touch</span>
+            <span class="text-sm font-semibold text-blue-300 uppercase tracking-wider mb-2 block">Contact Us</span>
+            <h1 class="text-6xl md:text-7xl font-bold mb-6 leading-tight text-white">
+              Get In <span class="text-blue-300">Touch</span>
           </h1>
           </div>
           <p ref="heroSubtitle" class="text-2xl md:text-3xl font-light max-w-4xl mx-auto leading-relaxed">
@@ -38,8 +38,8 @@
     <section ref="mainRef" class="py-24 bg-gradient-to-br from-gray-50 to-white relative">
       <!-- Subtle Background -->
       <div class="absolute inset-0 opacity-5">
-        <div class="absolute top-10 right-10 w-64 h-64 bg-primary-300 rounded-full"></div>
-        <div class="absolute bottom-10 left-10 w-32 h-32 bg-secondary-300 rounded-full"></div>
+        <div class="absolute top-10 right-10 w-64 h-64 bg-blue-300 rounded-full"></div>
+        <div class="absolute bottom-10 left-10 w-32 h-32 bg-indigo-300 rounded-full"></div>
       </div>
       
       <div class="container mx-auto px-6 relative z-10">
@@ -48,7 +48,7 @@
           <div ref="formSection">
             <div class="bg-white rounded-3xl shadow-2xl p-10 border border-gray-100">
               <div class="mb-8">
-                <h2 class="text-4xl font-bold text-primary-800 mb-4">Send Us a Message</h2>
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Send Us a Message</h2>
                 <p class="text-gray-600 text-lg">
                   Fill out the form below and our logistics experts will get back to you within 24 hours with a customized solution.
                 </p>
@@ -61,7 +61,7 @@
           <div ref="infoSection" class="space-y-8">
             <!-- Real Office Locations from Brochure -->
             <div class="bg-white rounded-3xl shadow-xl p-10 border border-gray-100">
-              <h3 class="text-3xl font-bold text-primary-800 mb-8">Our Office Locations</h3>
+              <h3 class="text-3xl font-bold text-gray-900 mb-8">Our Office Locations</h3>
             <div class="space-y-8">
                   <div 
                   v-for="(office, index) in offices" 
@@ -71,13 +71,10 @@
                   >
                   <div class="flex-shrink-0 w-14 h-14 text-white rounded-xl flex items-center justify-center mr-6 shadow-lg"
                        :class="`bg-gradient-to-r ${office.gradient}`">
-                    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
-                      </svg>
+                    <span class="text-2xl">{{ office.emoji }}</span>
                     </div>
                   <div class="flex-1">
-                    <h4 class="text-xl font-bold text-primary-800 mb-2">{{ office.city }}</h4>
+                    <h4 class="text-xl font-bold text-gray-900 mb-2">{{ office.city }}</h4>
                     <p class="text-gray-600 mb-2 leading-relaxed">{{ office.address }}</p>
                     <div class="flex items-center">
                       <span class="px-3 py-1 text-sm font-medium rounded-full"
@@ -92,7 +89,7 @@
 
             <!-- Real Contact Details from Brochure -->
             <div class="bg-white rounded-3xl shadow-xl p-10 border border-gray-100">
-              <h3 class="text-3xl font-bold text-primary-800 mb-8">Contact Details</h3>
+              <h3 class="text-3xl font-bold text-gray-900 mb-8">Contact Details</h3>
               <div class="space-y-6">
                 <div 
                   v-for="(contact, index) in contactDetails" 
@@ -102,51 +99,30 @@
                 >
                   <div class="flex-shrink-0 w-12 h-12 text-white rounded-xl flex items-center justify-center mr-6 shadow-lg"
                        :class="`bg-gradient-to-r ${contact.gradient}`">
-                    <div v-html="contact.iconSvg"></div>
+                    <span class="text-xl">{{ contact.emoji }}</span>
                     </div>
                     <div>
-                    <p class="font-bold text-primary-800 text-lg">{{ contact.label }}</p>
-                    <p class="text-gray-600" v-html="contact.value"></p>
+                    <p class="font-bold text-gray-900 text-lg">{{ contact.label }}</p>
+                    <!-- Handle phone numbers array -->
+                    <div v-if="contact.id === 1" class="space-y-1">
+                      <p v-for="phone in contact.value" :key="phone" class="text-gray-600 font-semibold text-sm">
+                        {{ phone }}
+                      </p>
+                    </div>
+                    <!-- Handle email addresses array -->
+                    <div v-else-if="contact.id === 2" class="space-y-1">
+                      <p v-for="email in contact.value" :key="email" class="text-gray-600 font-semibold text-sm">
+                        {{ email }}
+                      </p>
+                    </div>
+                    <!-- Handle other contact types -->
+                    <p v-else class="text-gray-600" v-html="contact.value"></p>
                   </div>
                 </div>
               </div>
             </div>
 
-            <!-- Enhanced Quick Quote CTA -->
-            <div ref="ctaSection" class="bg-gradient-to-r from-primary-800 to-primary-900 text-white rounded-3xl p-10 text-center relative overflow-hidden">
-              <!-- Background Pattern -->
-              <div class="absolute inset-0 opacity-10">
-                <div class="absolute top-4 right-4 w-20 h-20 border-2 border-white rounded-full"></div>
-                <div class="absolute bottom-4 left-4 w-16 h-16 border border-white rounded-full"></div>
-              </div>
-              
-              <div class="relative z-10">
-                <div class="flex justify-center mb-6">
-                  <div class="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center">
-                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
-                    </svg>
-                  </div>
-                </div>
-                <h3 class="text-3xl font-bold mb-4">Need a Quick Quote?</h3>
-                <p class="text-xl font-light mb-8 max-w-md mx-auto">
-                  Get an instant estimate for your global shipping requirements with our expert consultation
-                </p>
-                <router-link 
-                  ref="ctaButton"
-                  to="/services" 
-                  class="group inline-flex items-center bg-secondary-500 hover:bg-secondary-400 text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 relative overflow-hidden"
-                >
-                  <span class="relative z-10 flex items-center">
-                    Get Free Quote Now
-                    <svg class="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
-                  </svg>
-                  </span>
-                  <div class="absolute inset-0 bg-gradient-to-r from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                </router-link>
-              </div>
-            </div>
+            
           </div>
         </div>
       </div>
@@ -156,9 +132,9 @@
     <section ref="mapRef" class="py-24 bg-white">
       <div class="container mx-auto px-6">
         <div ref="mapHeader" class="text-center mb-16">
-          <span class="text-sm font-semibold text-secondary-500 uppercase tracking-wider mb-2 block">Our Locations</span>
-          <h2 class="text-5xl md:text-6xl font-bold text-primary-800 mb-6 leading-tight">
-            Find Us on the <span class="text-transparent bg-clip-text bg-gradient-to-r from-secondary-500 to-secondary-600">Map</span>
+          <span class="text-sm font-semibold text-blue-600 uppercase tracking-wider mb-2 block">Our Locations</span>
+          <h2 class="text-5xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+            Find Us on the <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-indigo-600">Map</span>
           </h2>
           <p class="text-xl text-gray-600 max-w-3xl mx-auto font-light">
             Visit our offices across Bangladesh or contact us for directions to the nearest location
@@ -174,7 +150,7 @@
 
 <script setup>
 import { ref, onMounted, nextTick } from 'vue';
-import { gsap } from 'gsap';
+import { gsap, ScrollTrigger } from '@/utils/gsap';
 import ContactForm from '../components/common/ContactForm.vue';
 import OfficeMap from '../components/common/OfficeMap.vue';
 
@@ -202,23 +178,26 @@ const offices = ref([
   {
     id: 1,
     city: "Dhaka Corporate Office",
-    address: "Azhar Comfort Complex (9th Floor), Flat No. B, GA-130/A, Progoti Shoroni, Gulshan-01, Dhaka-1212",
-    type: "Headquarters",
-    gradient: "from-primary-500 to-primary-600"
+    address: "Azhar Comfort Complex (9th Floor), GA-130/A, Progoti Shoroni, Gulshan-01, Dhaka-1212",
+
+    emoji: "🏢",
+    
   },
   {
     id: 2,
     city: "Chittagong Office",
     address: "Faruk Chamber (10th Floor)1403, Shek Mujib Road, Agrabad, Chittagong CIA-4100",
-    type: "Regional Office",
-    gradient: "from-secondary-500 to-secondary-600"
+
+    emoji: "🏬",
+    
   },
   {
     id: 3,
     city: "Khulna Office",
     address: "Dr. Rahman Plaza, 1403, 15, KDA Avenue, Sheikhpapa, Khulna-9100",
-    type: "Branch Office",
-    gradient: "from-blue-500 to-blue-600"
+   
+    emoji: "🏪",
+  
   }
 ]);
 
@@ -227,37 +206,38 @@ const contactDetails = ref([
   {
     id: 1,
     label: "Phone Numbers",
-    value: "+880 1722-339542<br>+880 1644-17846",
-    iconSvg: `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24" class="w-6 h-6">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
-    </svg>`,
+    value: [
+      '+8801 711 560 112',
+      '+8801 722 339 542',
+      '+8801 309 287 416',
+      '+8801 736 291 401'
+    ],
+    emoji: "📞",
     gradient: "from-green-500 to-green-600"
   },
   {
     id: 2,
-    label: "Email Address",
-    value: "motiur@arfanexpressbd.com & kibria@arfanexpressbd.com",
-    iconSvg: `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24" class="w-6 h-6">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-    </svg>`,
+    label: "Email Addresses",
+    value: [
+      "info@arfanexpressbd.com",
+      "motiur@arfanexpressbd.com", 
+      "kibria@arfanexpressbd.com"
+    ],
+    emoji: "📧",
     gradient: "from-blue-500 to-blue-600"
   },
   {
     id: 3,
     label: "Business Registration",
     value: "AIN NO: 101080094",
-    iconSvg: `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24" class="w-6 h-6">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
-    </svg>`,
+    emoji: "📄",
     gradient: "from-purple-500 to-purple-600"
   },
   {
     id: 4,
     label: "Business Hours",
     value: "Sunday - Thursday: 9:00 AM - 6:00 PM<br>Saturday: 9:00 AM - 2:00 PM<br>Friday: Closed",
-    iconSvg: `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24" class="w-6 h-6">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
-    </svg>`,
+    emoji: "🕒",
     gradient: "from-orange-500 to-orange-600"
   }
 ]);
@@ -266,7 +246,7 @@ const mapLocations = [
   {
     id: 1,
     city: 'Dhaka Corporate Office',
-    address: 'Azhar Comfort Complex (9th Floor), Flat No. B, GA-130/A, Progoti Shoroni, Gulshan-01, Dhaka-1212',
+    address: 'Azhar Comfort Complex (9th Floor), GA-130/A, Progoti Shoroni, Gulshan-01, Dhaka-1212',
     lat: 23.7925,
     lng: 90.4078
   },

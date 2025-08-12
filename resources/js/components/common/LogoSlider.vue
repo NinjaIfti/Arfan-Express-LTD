@@ -30,7 +30,7 @@
           <div 
             v-for="(logo, index) in logos" 
             :key="`logo-${index}`"
-            class="flex-shrink-0 w-40 h-24 flex items-center justify-center bg-white rounded-lg shadow-md hover:shadow-lg transition-all duration-300 grayscale hover:grayscale-0 hover:scale-105 p-4"
+            class="flex-shrink-0 w-52 h-70 flex items-center justify-center transition-all duration-300 hover:scale-105 p-6"
           >
             <img 
               :src="logo.src" 
@@ -43,7 +43,7 @@
           <div 
             v-for="(logo, index) in logos" 
             :key="`logo-duplicate-${index}`"
-            class="flex-shrink-0 w-40 h-24 flex items-center justify-center bg-white rounded-lg shadow-md hover:shadow-lg transition-all duration-300 grayscale hover:grayscale-0 hover:scale-105 p-4"
+            class="flex-shrink-0 w-52 h-70 flex items-center justify-center transition-all duration-300 hover:scale-105 p-6"
           >
             <img 
               :src="logo.src" 
@@ -82,11 +82,24 @@ const logos = ref([
   { name: 'Partner Logo 10', src: '/images/slide/10.png' },
   { name: 'Partner Logo 11', src: '/images/slide/11.png' },
   { name: 'Partner Logo 12', src: '/images/slide/12.png' },
+  { name: 'Partner Logo 13', src: '/images/slide/13.png' },
+  { name: 'Partner Logo 14', src: '/images/slide/14.png' },
+  { name: 'Partner Logo 15', src: '/images/slide/15.png' },
+  { name: 'Partner Logo 16', src: '/images/slide/16.png' },
+  { name: 'Partner Logo 17', src: '/images/slide/17.png' },
+  { name: 'Partner Logo 18', src: '/images/slide/18.png' },
+  { name: 'Partner Logo 19', src: '/images/slide/19.png' },
+  { name: 'Partner Logo 20', src: '/images/slide/20.png' },
+  { name: 'Partner Logo 21', src: '/images/slide/21.png' },
+  { name: 'Partner Logo 22', src: '/images/slide/22.png' },
+  { name: 'Partner Logo 23', src: '/images/slide/23.png' },
+  { name: 'Partner Logo 24', src: '/images/slide/24.png' },
+  { name: 'Partner Logo 25', src: '/images/slide/25.png' },
 ]);
 
 // Animation settings
 const slideSpeed = 0.5; // pixels per frame
-const logoWidth = 224; // 160px + 64px margin (w-40 + space-x-16)
+const logoWidth = 272; // 208px + 64px margin (w-52 + space-x-16)
 
 const startAnimation = () => {
   const animate = () => {
@@ -144,23 +157,8 @@ const handleMouseLeave = () => {
   animation-play-state: paused;
 }
 
-/* Smooth grayscale transition */
-.grayscale {
-  filter: grayscale(100%) brightness(0.8);
-  transition: all 0.3s ease;
-}
-
-.grayscale:hover {
-  filter: grayscale(0%) brightness(1);
-}
-
 /* Ensure images scale properly */
 img {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* Add subtle box shadow on hover */
-.flex-shrink-0:hover {
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
 }
 </style> 

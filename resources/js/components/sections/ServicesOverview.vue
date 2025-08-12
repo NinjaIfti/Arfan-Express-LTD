@@ -126,7 +126,7 @@
 
 <script setup>
 import { ref, onMounted, nextTick } from 'vue';
-import { gsap } from 'gsap';
+import { gsap, ScrollTrigger } from '@/utils/gsap';
 
 // Template refs
 const servicesRef = ref(null);

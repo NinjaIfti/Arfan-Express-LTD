@@ -60,9 +60,7 @@
 <script setup>
 import { ref, onMounted, onUnmounted, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
-import { gsap } from 'gsap';
-import { CSSPlugin } from 'gsap/CSSPlugin';
-import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
+import { gsap } from '@/utils/gsap';
 import AppHeader from './components/layout/AppHeader.vue';
 import AppFooter from './components/layout/AppFooter.vue';
 import FloatingActionButtons from './components/common/FloatingActionButtons.vue';
@@ -87,8 +85,6 @@ onMounted(() => {
   
   // Initialize any global animations
   initGlobalAnimations();
-
-  gsap.registerPlugin(CSSPlugin, ScrollToPlugin);
 });
 
 onUnmounted(() => {
