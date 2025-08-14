@@ -39,73 +39,73 @@
     <!-- Professional Content -->
     <div ref="contentRef" class="relative z-30 text-center text-white px-4 sm:px-6 max-w-5xl mx-auto py-8 sm:py-0">
       <!-- Company Logo/Name -->
-      <div class="mb-8 sm:mb-12 animate-fade-up">
-        <h1 class="text-4xl xs:text-5xl sm:text-6xl md:text-8xl font-bold mb-4 sm:mb-6 leading-tight">
-          <span class="font-poppins text-white drop-shadow-2xl tracking-tight block animate-slide-up-delay-1">
+      <div class="mb-6 sm:mb-8 md:mb-12 animate-fade-up">
+        <h1 class="font-bold mb-3 sm:mb-4 md:mb-6 leading-tight hero-title">
+          <span class="font-poppins text-white drop-shadow-2xl tracking-tight block animate-slide-up-delay-1 company-name">
             Arfan Express
           </span>
           <br class="hidden xs:block">
-          <span class="text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-inter text-secondary-300 font-bold block xs:inline animate-slide-up-delay-2">
+          <span class="font-inter text-white drop-shadow-2xl font-bold block xs:inline animate-slide-up-delay-2 company-name">
             LIMITED
           </span>
         </h1>
-        <div class="w-24 sm:w-32 h-1.5 bg-gradient-to-r from-secondary-400 to-secondary-500 mx-auto rounded-full shadow-lg animate-scale-up-delay-3"></div>
+        <div class="w-16 sm:w-24 md:w-32 h-1 sm:h-1.5 bg-gradient-to-r from-secondary-400 to-secondary-500 mx-auto rounded-full shadow-lg animate-scale-up-delay-3"></div>
       </div>
 
       <!-- Optimized Tagline with Simple CSS Animation -->
-      <div class="mb-8 sm:mb-12 animate-fade-up-delay-4">
-        <h2 class="text-lg xs:text-xl sm:text-2xl md:text-4xl font-inter mb-4 sm:mb-6 text-white font-light leading-relaxed">
+      <div class="mb-6 sm:mb-8 md:mb-12 animate-fade-up-delay-4">
+        <h2 class="font-inter mb-3 sm:mb-4 md:mb-6 text-white font-light leading-relaxed hero-tagline">
           <span ref="typewriterText">{{ currentTagline }}</span>
           <span class="animate-pulse text-blue-300 font-normal">|</span>
         </h2>
-        <p class="text-base xs:text-lg sm:text-xl md:text-2xl text-gray-200/90 leading-relaxed max-w-4xl mx-auto font-light px-2 sm:px-0">
+        <p class="text-gray-200/90 leading-relaxed max-w-4xl mx-auto font-light px-2 sm:px-4 md:px-0 hero-description">
           Leading freight forwarding company delivering innovative logistics solutions 
           that empower businesses to succeed worldwide.
         </p>
       </div>
 
       <!-- CTA Buttons -->
-      <div class="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center mb-12 sm:mb-16 px-2 sm:px-0 animate-fade-up-delay-5">
+      <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 md:gap-6 justify-center items-center mb-8 sm:mb-12 md:mb-16 px-2 sm:px-4 md:px-0 animate-fade-up-delay-5">
         <router-link 
           to="/contact" 
-          class="group maritime-button w-full sm:w-auto px-6 sm:px-10 py-4 sm:py-5 rounded-xl font-semibold text-lg sm:text-xl transition-all duration-300 transform hover:scale-105 hover:shadow-2xl shadow-lg relative overflow-hidden text-center"
+          class="group maritime-button w-full sm:w-auto hero-button rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-2xl shadow-lg relative overflow-hidden text-center"
         >
           <span class="relative z-10">Get Free Quote</span>
           <div class="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
         </router-link>
         <router-link 
           to="/services" 
-          class="group bg-transparent border-2 border-white/70 text-white hover:bg-white hover:text-[#1a4a7a] w-full sm:w-auto px-6 sm:px-10 py-4 sm:py-5 rounded-xl font-semibold text-lg sm:text-xl transition-all duration-300 transform hover:scale-105 backdrop-blur-sm text-center"
+          class="group bg-transparent border-2 border-white/70 text-white hover:bg-white hover:text-[#1a4a7a] w-full sm:w-auto hero-button rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 backdrop-blur-sm text-center"
         >
           <span class="relative z-10">Our Services</span>
         </router-link>
       </div>
 
       <!-- Trust Indicators with CSS Animations -->
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-8 text-center px-2 sm:px-0 animate-fade-up-delay-6">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 md:gap-8 text-center px-2 sm:px-4 md:px-0 animate-fade-up-delay-6">
         <div class="group">
-          <div class="text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-1 sm:mb-2 transition-transform duration-300 group-hover:scale-105 premium-glow">
-            <span ref="counter1">15</span>+
+          <div class="font-bold text-white mb-1 sm:mb-2 transition-transform duration-300 group-hover:scale-105 premium-glow hero-counter">
+            <span ref="counter1">30</span>+
           </div>
-          <div class="text-xs xs:text-sm sm:text-base md:text-lg text-gray-300 font-medium leading-tight">Years Experience</div>
+          <div class="text-gray-300 font-medium leading-tight hero-counter-label">Years Experience</div>
         </div>
         <div class="group">
-          <div class="text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-1 sm:mb-2 transition-transform duration-300 group-hover:scale-105 premium-glow">
+          <div class="font-bold text-white mb-1 sm:mb-2 transition-transform duration-300 group-hover:scale-105 premium-glow hero-counter">
             <span ref="counter2">100</span>+
           </div>
-          <div class="text-xs xs:text-sm sm:text-base md:text-lg text-gray-300 font-medium leading-tight">Global Partners</div>
+          <div class="text-gray-300 font-medium leading-tight hero-counter-label">Global Partners</div>
         </div>
         <div class="group">
-          <div class="text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-1 sm:mb-2 transition-transform duration-300 group-hover:scale-105 premium-glow">
-            <span ref="counter3">50000</span>+
+          <div class="font-bold text-white mb-1 sm:mb-2 transition-transform duration-300 group-hover:scale-105 premium-glow hero-counter">
+            <span ref="counter3">1M</span>+
           </div>
-          <div class="text-xs xs:text-sm sm:text-base md:text-lg text-gray-300 font-medium leading-tight">Successful Shipments</div>
+          <div class="text-gray-300 font-medium leading-tight hero-counter-label">Successful Shipments</div>
         </div>
         <div class="group">
-          <div class="text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-1 sm:mb-2 transition-transform duration-300 group-hover:scale-105 premium-glow">
+          <div class="font-bold text-white mb-1 sm:mb-2 transition-transform duration-300 group-hover:scale-105 premium-glow hero-counter">
             24/7
           </div>
-          <div class="text-xs xs:text-sm sm:text-base md:text-lg text-gray-300 font-medium leading-tight">Global Support</div>
+          <div class="text-gray-300 font-medium leading-tight hero-counter-label">Global Support</div>
         </div>
       </div>
     </div>
@@ -201,21 +201,23 @@ const lazyLoadImages = () => {
 const animateCounters = () => {
   // Use CSS animations instead of GSAP for better performance
   const counters = [counter1.value, counter2.value, counter3.value];
-  const targets = [15, 100, 50000];
+  const targets = [30, 100, 1];
+  const displayFormats = ['', '', 'M']; // Special format for third counter
   
   counters.forEach((counter, index) => {
     if (counter) {
       let start = 0;
       const end = targets[index];
       const increment = end / 60; // Animate over ~1 second at 60fps
+      const format = displayFormats[index];
       
       const count = () => {
         start += increment;
         if (start < end) {
-          counter.textContent = Math.floor(start);
+          counter.textContent = Math.floor(start) + format;
           requestAnimationFrame(count);
         } else {
-          counter.textContent = end;
+          counter.textContent = end + format;
         }
       };
       
@@ -482,6 +484,106 @@ onUnmounted(() => {
 @supports (-webkit-touch-callout: none) {
   .brochure-hero-bg {
     min-height: -webkit-fill-available;
+  }
+}
+
+/* Zoom-friendly responsive typography using clamp() */
+.company-name {
+  font-size: clamp(2rem, 8vw, 6rem);
+  line-height: 1.1;
+}
+
+.hero-title {
+  font-size: clamp(2rem, 8vw, 6rem);
+}
+
+.hero-tagline {
+  font-size: clamp(1rem, 3vw, 2.5rem);
+  line-height: 1.4;
+}
+
+.hero-description {
+  font-size: clamp(0.875rem, 2.5vw, 1.5rem);
+  line-height: 1.6;
+}
+
+.hero-button {
+  font-size: clamp(0.875rem, 2vw, 1.125rem);
+  padding: clamp(0.75rem, 2vw, 1.25rem) clamp(1.5rem, 4vw, 2.5rem);
+}
+
+.hero-counter {
+  font-size: clamp(1.5rem, 5vw, 3rem);
+  line-height: 1.2;
+}
+
+.hero-counter-label {
+  font-size: clamp(0.75rem, 2vw, 1rem);
+  line-height: 1.3;
+}
+
+/* Improved viewport scaling for better zoom behavior */
+@media (min-width: 1920px) {
+  .company-name,
+  .hero-title {
+    font-size: clamp(4rem, 6vw, 8rem);
+  }
+  
+  .hero-tagline {
+    font-size: clamp(1.5rem, 2.5vw, 3rem);
+  }
+  
+  .hero-description {
+    font-size: clamp(1.125rem, 2vw, 2rem);
+  }
+}
+
+/* Enhanced mobile responsiveness */
+@media (max-width: 768px) {
+  .company-name,
+  .hero-title {
+    font-size: clamp(1.75rem, 10vw, 3.5rem);
+  }
+  
+  .hero-tagline {
+    font-size: clamp(0.875rem, 4vw, 1.5rem);
+  }
+  
+  .hero-description {
+    font-size: clamp(0.8rem, 3.5vw, 1.125rem);
+  }
+  
+  .hero-counter {
+    font-size: clamp(1.25rem, 6vw, 2rem);
+  }
+  
+  .hero-counter-label {
+    font-size: clamp(0.7rem, 2.5vw, 0.875rem);
+  }
+}
+
+/* Ultra-wide screen optimization */
+@media (min-width: 2560px) {
+  .company-name,
+  .hero-title {
+    font-size: clamp(6rem, 5vw, 10rem);
+  }
+}
+
+/* High zoom level protection */
+@media (max-width: 320px) {
+  .company-name,
+  .hero-title {
+    font-size: clamp(1.5rem, 12vw, 2.5rem);
+    word-break: break-word;
+  }
+  
+  .hero-tagline {
+    font-size: clamp(0.75rem, 5vw, 1rem);
+  }
+  
+  .hero-description {
+    font-size: clamp(0.7rem, 4vw, 0.875rem);
   }
 }
 </style> 
